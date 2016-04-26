@@ -8,25 +8,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/image"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/name_quiz"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/start_screen_vertical_margin"
+        android:layout_marginBottom="@dimen/start_screen_vertical_margin"
+        android:layout_centerHorizontal="true"
         />
 
     <TextView
+        android:id="@+id/text_start_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Screen!"
-        android:id="@+id/textView" />
+        android:text="@string/start_screen_text"
+        android:layout_below="@+id/image"
+        android:layout_marginBottom="@dimen/start_screen_vertical_margin"
+        />
 
-    <Spinner
+    <LinearLayout
+        android:id="@+id/select_department"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/department_spinner" />
+        android:orientation="horizontal"
+        android:layout_below="@+id/text_start_screen"
+        >
+
+        <TextView
+            android:id="@+id/text_department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_department"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            />
+
+        <Spinner
+            android:id="@+id/department_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+            />
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="@string/start_screen_button_text"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/app_btn"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         />
 
 </com.trifork.ckp.namequiz.start.StartView>

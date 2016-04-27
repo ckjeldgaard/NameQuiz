@@ -25,6 +25,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.squareup.flow:flow:1.0.0-alpha'
+    compile 'com.hannesdorfmann.mosby:mvp:3.0.0-SNAPSHOT'
+    compile 'com.hannesdorfmann.mosby:viewstate:3.0.0-SNAPSHOT'
 
     androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile 'com.android.support.test:rules:0.4'

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Name Quiz</string>
-    <string name="start_screen_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac hendrerit lorem, a tristique risus. Suspendisse mattis, ex eget tempus viverra, diam velit sollicitudin tellus, vel ultrices lectus odio sit amet ligula.</string>
+    <string name="start_screen_text">Select a department and start guessing names.</string>
     <string name="select_department">Department:</string>
     <string name="start_screen_button_text">Start</string>
+    <string name="common_error_text">An error has occurred.</string>
 </resources>

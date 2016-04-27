@@ -2,7 +2,7 @@ package com.trifork.ckp.namequiz;
 
 import android.support.test.rule.ActivityTestRule;
 
-import com.trifork.ckp.namequiz.start.StartView;
+import com.trifork.ckp.namequiz.start.StartLayout;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,6 +20,6 @@ public class NavigationTest {
     /** Verifies that the app is in its default state on a cold start. */
     @Test public void defaultKeyIsUsed() {
         onView(withId(R.id.activity_main))
-                .check(matches(hasDescendant(isAssignableFrom(StartView.class))));
+                .check(matches(hasDescendant(isAssignableFrom(StartLayout.class))));
     }
 }

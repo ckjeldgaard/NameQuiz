@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_base_url">https://popping-fire-4168.firebaseio.com</string>
+</resources>

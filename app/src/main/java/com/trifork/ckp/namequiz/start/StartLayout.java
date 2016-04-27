@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.trifork.ckp.namequiz.Injection;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.data.Department;
 
@@ -33,7 +34,7 @@ public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPres
 
     public StartLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.presenter = new StartPresenter();
+        this.presenter = new StartPresenter(Injection.provideDepartmentsRepositoy());
         this.departments = new ArrayList<>(0);
     }
 

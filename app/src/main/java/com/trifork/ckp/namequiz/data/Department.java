@@ -2,19 +2,19 @@ package com.trifork.ckp.namequiz.data;
 
 public class Department {
 
-    private final int id;
+    private final long id;
     private final String departmentName;
 
-    public Department(int id, String departmentName) {
+    public Department(long id, String departmentName) {
         this.id = id;
         this.departmentName = departmentName;
     }
 
-    public int id() {
+    public long getId() {
         return id;
     }
 
-    public String name() {
+    public String getDepartmentName() {
         return departmentName;
     }
 

@@ -18,6 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        prod {
+
+        }
+    }
 }
 
 dependencies {
@@ -27,6 +33,7 @@ dependencies {
     compile 'com.squareup.flow:flow:1.0.0-alpha'
     compile 'com.hannesdorfmann.mosby:mvp:3.0.0-SNAPSHOT'
     compile 'com.hannesdorfmann.mosby:viewstate:3.0.0-SNAPSHOT'
+    compile 'com.firebase:firebase-client-android:2.5.2+'
 
     androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile 'com.android.support.test:rules:0.4'

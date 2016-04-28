@@ -1,5 +1,7 @@
 package com.trifork.ckp.namequiz.data;
 
+import com.trifork.ckp.namequiz.model.Department;
+
 import java.util.List;
 
 /**
@@ -9,7 +11,8 @@ import java.util.List;
 public interface ServiceApi {
 
     interface ServiceCallback<T> {
-        void onLoaded(T notes);
+        void onLoaded(T departments);
+        void onError(String errorMessage);
     }
 
     void getAllDepartments(ServiceCallback<List<Department>> callback);

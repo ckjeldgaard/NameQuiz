@@ -6,6 +6,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.trifork.ckp.namequiz.model.Department;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class FirebaseServiceApi implements ServiceApi {
                         "/data/departments"
                 )
         );
+        Log.d("Firebase", "Retrieving data...");
         firebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -39,11 +41,15 @@ public class FirebaseServiceApi implements ServiceApi {
                             )
                     );
                 }
-                callback.onLoaded(departments);
+                if (departments.size() > 0) {
+                    callback.onLoaded(departments);
+                } else {
+                    callback.onError("No departments");
+                }
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
+                Log.e("Firebase", "The read failed: " + firebaseError.getMessage());
             }
         });
     }

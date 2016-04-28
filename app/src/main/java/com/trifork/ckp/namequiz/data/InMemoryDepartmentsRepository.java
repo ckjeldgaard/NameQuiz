@@ -2,6 +2,8 @@ package com.trifork.ckp.namequiz.data;
 
 import android.support.annotation.NonNull;
 
+import com.trifork.ckp.namequiz.model.Department;
+
 import java.util.List;
 
 public class InMemoryDepartmentsRepository implements DepartmentsRepository {
@@ -22,6 +24,11 @@ public class InMemoryDepartmentsRepository implements DepartmentsRepository {
                 public void onLoaded(List<Department> departments) {
                     cachedDepartments = departments;
                     callback.onDepartmentsLoaded(departments);
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    callback.onFailure(errorMessage);
                 }
             });
         } else {

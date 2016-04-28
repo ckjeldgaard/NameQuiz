@@ -1,6 +1,6 @@
-package com.trifork.ckp.namequiz.data;
+package com.trifork.ckp.namequiz.model;
 
-public class Department {
+public final class Department {
 
     private final long id;
     private final String departmentName;

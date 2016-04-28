@@ -3,7 +3,7 @@ package com.trifork.ckp.namequiz.start;
 import android.support.annotation.NonNull;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-import com.trifork.ckp.namequiz.data.Department;
+import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.data.DepartmentsRepository;
 
 import java.util.List;
@@ -24,6 +24,11 @@ public class StartPresenter extends MvpBasePresenter<StartView> {
             public void onDepartmentsLoaded(List<Department> departments) {
                 getView().setData(departments);
                 getView().showContent();
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                getView().showError(null, false);
             }
         });
     }

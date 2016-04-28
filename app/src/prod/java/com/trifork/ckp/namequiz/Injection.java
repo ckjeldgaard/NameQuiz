@@ -7,9 +7,11 @@ import com.trifork.ckp.namequiz.data.FirebaseServiceApi;
 
 public class Injection {
 
-    public static DepartmentsRepository provideDepartmentsRepositoy() {
+    private static final String FIREBASE_BASE_URL = "https://popping-fire-4168.firebaseio.com";
+
+    public static DepartmentsRepository provideDepartmentsRepository() {
         return new InMemoryDepartmentsRepository(
-                new FirebaseServiceApi("https://popping-fire-4168.firebaseio.com")
+                new FirebaseServiceApi(FIREBASE_BASE_URL)
         );
     }
 }

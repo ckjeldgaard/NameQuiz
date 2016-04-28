@@ -2,6 +2,8 @@ package com.trifork.ckp.namequiz.data;
 
 import android.support.annotation.NonNull;
 
+import com.trifork.ckp.namequiz.model.Department;
+
 import java.util.List;
 
 /**
@@ -10,8 +12,8 @@ import java.util.List;
 public interface DepartmentsRepository {
 
     interface LoadDepartmentsCallback {
-
         void onDepartmentsLoaded(List<Department> departments);
+        void onFailure(String errorMessage);
     }
 
     void getDepartments(@NonNull LoadDepartmentsCallback callback);

@@ -3,7 +3,6 @@ package com.trifork.ckp.namequiz.start;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -15,7 +14,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.Injection;
 import com.trifork.ckp.namequiz.R;
-import com.trifork.ckp.namequiz.data.Department;
+import com.trifork.ckp.namequiz.model.Department;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,7 @@ public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPres
 
     public StartLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.presenter = new StartPresenter(Injection.provideDepartmentsRepositoy());
+        this.presenter = new StartPresenter(Injection.provideDepartmentsRepository());
         this.departments = new ArrayList<>(0);
     }
 
@@ -51,10 +50,6 @@ public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPres
         errorView = (TextView) findViewById(R.id.errorView);
         loadingView = (ProgressBar) findViewById(R.id.loadingView);
 
-        /*List<Department> dep = new ArrayList<Department>();
-        dep.add(new Department(1, "Copenhagen"));
-        dep.add(new Department(2, "Aarhus"));*/
-
         departmentsAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, this.departments);
         departmentsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -62,22 +57,6 @@ public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPres
         departmentSpinner.setAdapter(departmentsAdapter);
 
         /*
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("København");
-        categories.add("Aarhus");
-        categories.add("Aalborg");
-        categories.add("Esbjerg");
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        departmentSpinner.setAdapter(dataAdapter);
-
         EditText nameView = (EditText) findViewById(R.id.welcome_screen_name);
 
         nameView.setOnEditorActionListener(new TextView.OnEditorActionListener() {

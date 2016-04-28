@@ -1,24 +1,13 @@
 package com.trifork.ckp.namequiz;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.trifork.ckp.namequiz.data.Department;
-import com.trifork.ckp.namequiz.data.Person;
 import com.trifork.ckp.namequiz.flow.NameQuizDispatcher;
 import com.trifork.ckp.namequiz.flow.NameQuizKeyParceler;
 import com.trifork.ckp.namequiz.start.StartScreen;
-
-import java.io.ByteArrayOutputStream;
 
 import flow.Flow;
 

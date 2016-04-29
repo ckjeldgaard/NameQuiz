@@ -3,7 +3,9 @@ package com.trifork.ckp.namequiz.start;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -15,9 +17,12 @@ import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.Injection;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.Department;
+import com.trifork.ckp.namequiz.question.QuestionScreen;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import flow.Flow;
 
 public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPresenter> implements StartView {
 
@@ -27,6 +32,7 @@ public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPres
     private RelativeLayout contentView;
     private TextView errorView;
     private ProgressBar loadingView;
+    private Button startButton;
     private Spinner departmentSpinner;
 
     private ArrayAdapter<String> departmentsAdapter;
@@ -50,6 +56,8 @@ public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPres
         errorView = (TextView) findViewById(R.id.errorView);
         loadingView = (ProgressBar) findViewById(R.id.loadingView);
 
+        startButton = (Button) findViewById(R.id.start_button);
+
         departmentsAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, this.departments);
         departmentsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -65,6 +73,13 @@ public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPres
                 return true;
             }
         });*/
+
+        startButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Flow.get(v).set(new QuestionScreen());
+            }
+        });
     }
 
     @Override

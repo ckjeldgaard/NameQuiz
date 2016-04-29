@@ -35,4 +35,9 @@ public class InMemoryDepartmentsRepository implements DepartmentsRepository {
             callback.onDepartmentsLoaded(cachedDepartments);
         }
     }
+
+    @Override
+    public void refreshData() {
+        cachedDepartments = null;
+    }
 }

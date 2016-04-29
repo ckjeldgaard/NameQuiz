@@ -28,15 +28,22 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.squareup.flow:flow:1.0.0-alpha'
     compile 'com.hannesdorfmann.mosby:mvp:3.0.0-SNAPSHOT'
     compile 'com.hannesdorfmann.mosby:viewstate:3.0.0-SNAPSHOT'
     compile 'com.firebase:firebase-client-android:2.5.2+'
 
+    // Dependencies for local unit tests
+    testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-all:1.10.19"
+
+    // Android Testing Support Library's runner and rules
     androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile 'com.android.support.test:rules:0.4'
+
+    // Espresso UI Testing dependencies.
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 }
 

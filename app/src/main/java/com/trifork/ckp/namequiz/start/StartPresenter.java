@@ -12,8 +12,9 @@ public class StartPresenter extends MvpBasePresenter<StartView> {
 
     private final DepartmentsRepository departmentsRepository;
 
-    public StartPresenter(@NonNull DepartmentsRepository departmentsRepository) {
+    public StartPresenter(@NonNull DepartmentsRepository departmentsRepository, StartView view) {
         this.departmentsRepository = departmentsRepository;
+        this.attachView(view);
     }
 
     public void loadDepartments() {

@@ -17,4 +17,6 @@ public interface DepartmentsRepository {
     }
 
     void getDepartments(@NonNull LoadDepartmentsCallback callback);
+
+    void refreshData();
 }

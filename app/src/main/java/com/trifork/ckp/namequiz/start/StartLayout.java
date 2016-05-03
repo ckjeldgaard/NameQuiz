@@ -17,14 +17,14 @@ import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.Injection;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.Department;
-import com.trifork.ckp.namequiz.question.QuestionScreen;
+import com.trifork.ckp.namequiz.quiz.QuizScreen;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import flow.Flow;
 
-public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPresenter> implements StartView {
+public final class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPresenter> implements StartView {
 
     private final StartPresenter presenter;
     private List<Department> departments;
@@ -77,7 +77,7 @@ public class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPres
         startButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Flow.get(v).set(new QuestionScreen());
+                Flow.get(v).set(new QuizScreen());
             }
         });
     }

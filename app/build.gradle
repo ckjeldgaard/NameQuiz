@@ -24,6 +24,12 @@ android {
 
         }
     }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+        }
+    }
 }
 
 dependencies {
@@ -33,7 +39,7 @@ dependencies {
     compile 'com.squareup.flow:flow:1.0.0-alpha'
     compile 'com.hannesdorfmann.mosby:mvp:3.0.0-SNAPSHOT'
     compile 'com.hannesdorfmann.mosby:viewstate:3.0.0-SNAPSHOT'
-    compile 'com.firebase:firebase-client-android:2.5.2+'
+    compile 'com.firebase:firebase-client-android:2.5.2'
 
     // Dependencies for local unit tests
     testCompile 'junit:junit:4.12'

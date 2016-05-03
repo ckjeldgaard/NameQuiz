@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.firebase.client.Firebase;
 import com.trifork.ckp.namequiz.flow.NameQuizDispatcher;
 import com.trifork.ckp.namequiz.flow.NameQuizKeyParceler;
+import com.trifork.ckp.namequiz.quiz.QuizScreen;
 import com.trifork.ckp.namequiz.start.StartScreen;
 
 import flow.Flow;

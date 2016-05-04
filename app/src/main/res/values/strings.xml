@@ -3,5 +3,7 @@
     <string name="start_screen_text">Select a department and start guessing names.</string>
     <string name="select_department">Department:</string>
     <string name="start_screen_button_text">Start</string>
+    <string name="question_screen_button_text">Next</string>
     <string name="common_error_text">An error has occurred.</string>
+    <string name="text_question">Who’s this?</string>
 </resources>

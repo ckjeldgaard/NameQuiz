@@ -13,26 +13,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
  * Unit tests for the implementation of the in-memory repository with cache.
  */
-public class InMemoryDepartmentsRepositoryTest {
+public class InMemoryRepositoryTest {
 
     private static List<Department> DEPARTMENTS = new ArrayList<Department>() {{
         add(new Department(1, "Copenhagen"));
         add(new Department(2, "Aarhus"));
     }};
 
-    private InMemoryDepartmentsRepository departmentsRepository;
+    private InMemoryRepository repository;
 
     @Mock
     private ServiceApi serviceApi;
 
     @Mock
-    private DepartmentsRepository.LoadDepartmentsCallback loadDepartmentsCallback;
+    private Repository.LoadDepartmentsCallback loadDepartmentsCallback;
+
+    @Mock
+    private Repository.LoadPersonsCallback loadPersonsCallback;
 
     @Captor
     private ArgumentCaptor<ServiceApi.ServiceCallback> serviceCallbackArgumentCaptor;
@@ -42,7 +46,7 @@ public class InMemoryDepartmentsRepositoryTest {
         MockitoAnnotations.initMocks(this);
 
         // Get a reference to the class under test
-        departmentsRepository = new InMemoryDepartmentsRepository(serviceApi);
+        repository = new InMemoryRepository(serviceApi);
     }
 
     @Test
@@ -61,8 +65,8 @@ public class InMemoryDepartmentsRepositoryTest {
         twoLoadCallsToRepository(loadDepartmentsCallback);
 
         // When data refresh is requested
-        departmentsRepository.refreshData();
-        departmentsRepository.getDepartments(loadDepartmentsCallback); // Third call to API
+        repository.refreshData();
+        repository.getDepartments(loadDepartmentsCallback); // Third call to API
 
         // The departments where requested twice from the Service API (Caching on first and third call)
         verify(serviceApi, times(2)).getAllDepartments(any(ServiceApi.ServiceCallback.class));
@@ -71,18 +75,24 @@ public class InMemoryDepartmentsRepositoryTest {
     @Test
     public void getDepartments_requestsAllDepartmentsFromServiceApi() {
         // When departments are requested from the notes repository
-        departmentsRepository.getDepartments(loadDepartmentsCallback);
+        repository.getDepartments(loadDepartmentsCallback);
 
         // Then notes are loaded from the service API
         verify(serviceApi).getAllDepartments(any(ServiceApi.ServiceCallback.class));
     }
 
+    @Test
+    public void getPersonsBelongingToDepartment_requestsPersonsFromServiceApi() throws Exception {
+        repository.getPersons(loadPersonsCallback, DEPARTMENTS.get(0));
+        verify(serviceApi).getPersonsBelongingToDepartment(any(ServiceApi.ServiceCallback.class), eq(DEPARTMENTS.get(0)));
+    }
+
     /**
      * Convenience method that issues two calls to the departments repository
      */
-    private void twoLoadCallsToRepository(DepartmentsRepository.LoadDepartmentsCallback callback) {
+    private void twoLoadCallsToRepository(Repository.LoadDepartmentsCallback callback) {
         // When departments are requested from repository
-        departmentsRepository.getDepartments(callback); // First call to API
+        repository.getDepartments(callback); // First call to API
 
         // Use the Mockito Captor to capture the callback
         verify(serviceApi).getAllDepartments(serviceCallbackArgumentCaptor.capture());
@@ -90,6 +100,6 @@ public class InMemoryDepartmentsRepositoryTest {
         // Trigger callback so departments are cached
         serviceCallbackArgumentCaptor.getValue().onLoaded(DEPARTMENTS);
 
-        departmentsRepository.getDepartments(callback); // Second call to API
+        repository.getDepartments(callback); // Second call to API
     }
 }

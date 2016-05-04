@@ -1,17 +1,21 @@
 package com.trifork.ckp.namequiz.data;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.trifork.ckp.namequiz.model.Department;
+import com.trifork.ckp.namequiz.model.Person;
 
 import java.util.List;
 
-public class InMemoryDepartmentsRepository implements DepartmentsRepository {
+public class InMemoryRepository implements Repository {
+
+    private static final String TAG = InMemoryRepository.class.getSimpleName();
 
     private final ServiceApi serviceApi;
     private List<Department> cachedDepartments;
 
-    public InMemoryDepartmentsRepository(@NonNull ServiceApi serviceApi) {
+    public InMemoryRepository(@NonNull ServiceApi serviceApi) {
         this.serviceApi = serviceApi;
     }
 
@@ -34,6 +38,24 @@ public class InMemoryDepartmentsRepository implements DepartmentsRepository {
         } else {
             callback.onDepartmentsLoaded(cachedDepartments);
         }
+    }
+
+    @Override
+    public void getPersons(@NonNull final LoadPersonsCallback callback, @NonNull Department department) {
+        // TODO: Caching
+        serviceApi.getPersonsBelongingToDepartment(new ServiceApi.ServiceCallback<List<Person>>() {
+            @Override
+            public void onLoaded(List<Person> persons) {
+                Log.d(TAG, "getPersons onLoaded() called");
+                callback.onPersonsLoaded(persons);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.e(TAG, "getPersons onError() called with: " + "errorMessage = [" + errorMessage + "]");
+                callback.onFailure(errorMessage);
+            }
+        }, department);
     }
 
     @Override

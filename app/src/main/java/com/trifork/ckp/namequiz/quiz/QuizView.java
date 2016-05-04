@@ -1,7 +1,9 @@
 package com.trifork.ckp.namequiz.quiz;
 
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.trifork.ckp.namequiz.model.Quiz;
+import com.trifork.ckp.namequiz.model.Person;
 
-public interface QuizView extends MvpLceView<Quiz> {
+import java.util.List;
+
+public interface QuizView extends MvpLceView<List<Person>> {
 }

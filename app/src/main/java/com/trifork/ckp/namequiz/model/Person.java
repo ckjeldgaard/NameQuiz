@@ -1,16 +1,16 @@
 package com.trifork.ckp.namequiz.model;
 
-import android.media.Image;
+import android.graphics.Bitmap;
 
 public final class Person {
 
     private final String firstName;
     private final String fullName;
     private final Department department;
-    private final Image image;
+    private final Bitmap image;
     private final Gender gender;
 
-    public Person(String firstName, String fullName, Department department, Image image, Gender gender) {
+    public Person(String firstName, String fullName, Department department, Bitmap image, Gender gender) {
         this.firstName = firstName;
         this.fullName = fullName;
         this.department = department;
@@ -30,7 +30,7 @@ public final class Person {
         return department;
     }
 
-    public Image image() {
+    public Bitmap image() {
         return image;
     }
 

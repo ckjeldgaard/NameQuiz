@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trifork.ckp.namequiz.model.Department;
+import com.trifork.ckp.namequiz.model.Gender;
+import com.trifork.ckp.namequiz.model.Person;
 import com.trifork.ckp.namequiz.model.Question;
 
 import org.junit.Test;
@@ -20,9 +23,27 @@ import static org.mockito.Mockito.verify;
 public class QuestionAdapterTest extends AndroidTestCase {
 
     private static List<Question> QUESTIONS = new ArrayList<Question>() {{
-        add(new Question());
-        add(new Question());
-        add(new Question());
+        add(new Question(new Person(
+                "John",
+                "John Doe",
+                new Department(1, "Copenhagen"),
+                null,
+                Gender.MALE
+        )));
+        add(new Question(new Person(
+                "John",
+                "John Doe",
+                new Department(1, "Copenhagen"),
+                null,
+                Gender.MALE
+        )));
+        add(new Question(new Person(
+                "John",
+                "John Doe",
+                new Department(1, "Copenhagen"),
+                null,
+                Gender.MALE
+        )));
     }};
 
     private QuestionAdapter questionAdapter;
@@ -65,5 +86,11 @@ public class QuestionAdapterTest extends AndroidTestCase {
     public void testInstantiateItem() throws Exception {
         ViewGroup layout = (ViewGroup) questionAdapter.instantiateItem(container, 0);
         verify(container).addView(layout);
+    }
+
+    public void testGetItem() throws Exception {
+        Question question = questionAdapter.getItem(0);
+
+        assertEquals(QUESTIONS.get(0), question);
     }
 }

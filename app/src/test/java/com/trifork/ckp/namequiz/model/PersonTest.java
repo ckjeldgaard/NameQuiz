@@ -1,6 +1,6 @@
 package com.trifork.ckp.namequiz.model;
 
-import android.media.Image;
+import android.graphics.Bitmap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class PersonTest {
     private Department department;
 
     @Mock
-    private Image image;
+    private Bitmap image;
 
     @Before
     public void setUp() throws Exception {

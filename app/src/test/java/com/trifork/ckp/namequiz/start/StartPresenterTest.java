@@ -1,6 +1,6 @@
 package com.trifork.ckp.namequiz.start;
 
-import com.trifork.ckp.namequiz.data.DepartmentsRepository;
+import com.trifork.ckp.namequiz.data.Repository;
 import com.trifork.ckp.namequiz.model.Department;
 
 import org.junit.Before;
@@ -26,13 +26,13 @@ public class StartPresenterTest {
     }};
 
     @Mock
-    private DepartmentsRepository departmentsRepository;
+    private Repository repository;
 
     @Mock
-    private StartView startView;
+    private StartContract.StartView startView;
 
     @Captor
-    private ArgumentCaptor<DepartmentsRepository.LoadDepartmentsCallback> loadDepartmentsCallbackCaptor;
+    private ArgumentCaptor<Repository.LoadDepartmentsCallback> loadDepartmentsCallbackCaptor;
 
     private StartPresenter startPresenter;
 
@@ -41,7 +41,7 @@ public class StartPresenterTest {
         MockitoAnnotations.initMocks(this);
 
         // Get a reference to the class under test
-        startPresenter = new StartPresenter(departmentsRepository, startView);
+        startPresenter = new StartPresenter(repository, startView);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class StartPresenterTest {
         startPresenter.loadDepartments();
 
         // Callback is captured and invoked with stubbed departments
-        verify(departmentsRepository).getDepartments(loadDepartmentsCallbackCaptor.capture());
+        verify(repository).getDepartments(loadDepartmentsCallbackCaptor.capture());
         loadDepartmentsCallbackCaptor.getValue().onDepartmentsLoaded(DEPARTMENTS);
 
         // Then progress indicator is hidden and departments are shown in UI
@@ -58,4 +58,9 @@ public class StartPresenterTest {
         verify(startPresenter.getView()).showContent();
     }
 
+    @Test
+    public void testStartQuiz() throws Exception {
+        startPresenter.startNewQuiz(DEPARTMENTS.get(0));
+        verify(startPresenter.getView()).showStartQuiz(DEPARTMENTS.get(0));
+    }
 }

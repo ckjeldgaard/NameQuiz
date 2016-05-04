@@ -6,19 +6,30 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.trifork.ckp.namequiz.Injection;
 import com.trifork.ckp.namequiz.R;
+import com.trifork.ckp.namequiz.model.Department;
+import com.trifork.ckp.namequiz.model.Person;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.model.Quiz;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import flow.Flow;
+
 public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizPresenter> implements QuizView {
 
+    private RelativeLayout contentView;
+    private TextView errorView;
+    private ProgressBar loadingView;
     private ViewPager questionPager;
 
     public QuizLayout(Context context, AttributeSet attrs) {
@@ -28,25 +39,24 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     @NonNull
     @Override
     public QuizPresenter createPresenter() {
-        return new QuizPresenter(this);
+        return new QuizPresenter(Injection.provideRepository(), this);
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        List<Question> questions = new ArrayList<Question>() {{
-            add(new Question());
-            add(new Question());
-            add(new Question());
-        }};
+
+        contentView = (RelativeLayout) findViewById(R.id.quizContentView);
+        errorView = (TextView) findViewById(R.id.errorView);
+        loadingView = (ProgressBar) findViewById(R.id.loadingView);
+
         questionPager = (ViewPager) findViewById(R.id.question_pager);
-        questionPager.setAdapter(new QuestionAdapter(questions, LayoutInflater.from(getContext())));
     }
 
     @NonNull
     @Override
     public ViewState<QuizView> createViewState() {
-        return new RetainingLceViewState<Quiz, QuizView>();
+        return new RetainingLceViewState<List<Person>, QuizView>();
     }
 
     @Override
@@ -56,26 +66,40 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
 
     @Override
     public void showLoading(boolean pullToRefresh) {
-        Log.d("QuizLayout", "showLoading() called with: " + "pullToRefresh = [" + pullToRefresh + "]");
+        loadingView.setVisibility(VISIBLE);
+        errorView.setVisibility(GONE);
+        contentView.setVisibility(GONE);
     }
 
     @Override
     public void showContent() {
-        Log.d("QuizLayout", "showContent() called with: " + "");
+        loadingView.setVisibility(GONE);
+        errorView.setVisibility(GONE);
+        contentView.setVisibility(VISIBLE);
     }
 
     @Override
     public void showError(Throwable e, boolean pullToRefresh) {
-        Log.d("QuizLayout", "showError() called with: " + "e = [" + e + "], pullToRefresh = [" + pullToRefresh + "]");
+        loadingView.setVisibility(GONE);
+        errorView.setVisibility(VISIBLE);
+        contentView.setVisibility(GONE);
     }
 
     @Override
-    public void setData(Quiz data) {
-        Log.d("QuizLayout", "setData() called with: " + "data = [" + data + "]");
+    public void setData(final List<Person> persons) {
+        // TODO: Refactor
+        Log.d("QuizLayout", "setData() called with: " + "data = [" + persons + "]");
+        List<Question> questions = new ArrayList<Question>() {{
+            add(new Question(persons.get(0)));
+            add(new Question(persons.get(1)));
+            add(new Question(persons.get(2)));
+        }};
+        questionPager.setAdapter(new QuestionAdapter(questions, LayoutInflater.from(getContext())));
     }
 
     @Override
     public void loadData(boolean pullToRefresh) {
-        Log.d("QuizLayout", "loadData() called with: " + "pullToRefresh = [" + pullToRefresh + "]");
+        QuizScreen screen = Flow.getKey(this);
+        this.presenter.loadPersons(screen.department);
     }
 }

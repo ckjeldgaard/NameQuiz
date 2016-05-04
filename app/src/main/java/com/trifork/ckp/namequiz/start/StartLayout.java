@@ -24,7 +24,7 @@ import java.util.List;
 
 import flow.Flow;
 
-public final class StartLayout extends MvpViewStateRelativeLayout<StartView, StartPresenter> implements StartView {
+public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.StartView, StartPresenter> implements StartContract.StartView {
 
     private final StartPresenter presenter;
     private List<Department> departments;
@@ -39,7 +39,7 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartView, Sta
 
     public StartLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.presenter = new StartPresenter(Injection.provideDepartmentsRepository(), this);
+        this.presenter = new StartPresenter(Injection.provideRepository(), this);
         this.departments = new ArrayList<>(0);
     }
 
@@ -64,20 +64,14 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartView, Sta
         departmentSpinner = (Spinner) findViewById(R.id.department_spinner);
         departmentSpinner.setAdapter(departmentsAdapter);
 
-        /*
-        EditText nameView = (EditText) findViewById(R.id.welcome_screen_name);
-
-        nameView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                Flow.get(view).set(new HelloScreen(view.getText().toString()));
-                return true;
-            }
-        });*/
-
         startButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Flow.get(v).set(new QuizScreen());
+                presenter.startNewQuiz(
+                        departments.get(
+                                departmentSpinner.getSelectedItemPosition()
+                        )
+                );
             }
         });
     }
@@ -121,11 +115,20 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartView, Sta
     @NonNull
     @Override
     public ViewState createViewState() {
-        return new RetainingLceViewState<List<Department>, StartView>();
+        return new RetainingLceViewState<List<Department>, StartContract.StartView>();
     }
 
     @Override
     public void onNewViewStateInstance() {
         loadData(false);
+    }
+
+    @Override
+    public void showStartQuiz(Department department) {
+        Flow.get(startButton).set(
+                new QuizScreen(
+                        department
+                )
+        );
     }
 }

@@ -2,6 +2,7 @@ package com.trifork.ckp.namequiz.quiz;
 
 import android.test.AndroidTestCase;
 import android.test.mock.MockContext;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -31,12 +32,15 @@ public class QuestionAdapterTest extends AndroidTestCase {
     @Mock
     private ViewGroup container;
 
+    @Mock
+    private LayoutInflater layoutInflater;
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         MockitoAnnotations.initMocks(this);
         setContext(getContext());
-        questionAdapter = new QuestionAdapter(new MockContext(), QUESTIONS);
+        questionAdapter = new QuestionAdapter(QUESTIONS, layoutInflater);
     }
 
     public void testGetCount() {
@@ -53,4 +57,8 @@ public class QuestionAdapterTest extends AndroidTestCase {
         verify(container).removeView(view);
     }
 
+    public void testInstantiateItem() throws Exception {
+        ViewGroup layout = (ViewGroup) questionAdapter.instantiateItem(container, 0);
+        verify(container).addView(layout);
+    }
 }

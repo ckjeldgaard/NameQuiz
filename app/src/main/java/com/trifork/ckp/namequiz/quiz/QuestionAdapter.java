@@ -1,6 +1,5 @@
 package com.trifork.ckp.namequiz.quiz;
 
-import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +10,14 @@ import com.trifork.ckp.namequiz.model.Question;
 
 import java.util.List;
 
-public class QuestionAdapter extends PagerAdapter {
+public final class QuestionAdapter extends PagerAdapter {
 
-    private final Context context;
     private final List<Question> questions;
+    private final LayoutInflater layoutInflater;
 
-    public QuestionAdapter(Context ctx, List<Question> questions) {
-        this.context = ctx;
+    public QuestionAdapter(List<Question> questions, LayoutInflater layoutInflater) {
         this.questions = questions;
+        this.layoutInflater = layoutInflater;
     }
 
     @Override
@@ -38,8 +37,7 @@ public class QuestionAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.question_view, container, false);
+        ViewGroup layout = (ViewGroup) layoutInflater.inflate(R.layout.question_view, container, false);
         container.addView(layout);
         return layout;
     }

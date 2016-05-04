@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
@@ -39,7 +40,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
             add(new Question());
         }};
         questionPager = (ViewPager) findViewById(R.id.question_pager);
-        questionPager.setAdapter(new QuestionAdapter(getContext(), questions));
+        questionPager.setAdapter(new QuestionAdapter(questions, LayoutInflater.from(getContext())));
     }
 
     @NonNull

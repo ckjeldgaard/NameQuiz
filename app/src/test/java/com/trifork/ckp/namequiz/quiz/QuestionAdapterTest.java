@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.trifork.ckp.namequiz.model.Question;
 
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -43,20 +44,24 @@ public class QuestionAdapterTest extends AndroidTestCase {
         questionAdapter = new QuestionAdapter(QUESTIONS, layoutInflater);
     }
 
+    @Test
     public void testGetCount() {
         assertEquals(QUESTIONS.size(), questionAdapter.getCount());
     }
 
+    @Test
     public void testIsViewFromObject() throws Exception {
         assertEquals(true, questionAdapter.isViewFromObject(view, view));
     }
 
+    @Test
     public void testDestroyItem() throws Exception {
         questionAdapter.destroyItem(container, 0, view);
 
         verify(container).removeView(view);
     }
 
+    @Test
     public void testInstantiateItem() throws Exception {
         ViewGroup layout = (ViewGroup) questionAdapter.instantiateItem(container, 0);
         verify(container).addView(layout);

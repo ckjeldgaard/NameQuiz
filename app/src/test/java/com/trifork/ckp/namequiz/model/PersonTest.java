@@ -1,10 +1,7 @@
 package com.trifork.ckp.namequiz.model;
 
-import android.graphics.Bitmap;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import static org.junit.Assert.*;
 
@@ -13,9 +10,6 @@ public class PersonTest {
     private Person person;
     private Department department;
 
-    @Mock
-    private Bitmap image;
-
     @Before
     public void setUp() throws Exception {
         department = new Department(1, "Copenhagen");
@@ -23,7 +17,7 @@ public class PersonTest {
                 "John",
                 "John Doe",
                 department,
-                image,
+                "http://example.org/image.png",
                 Gender.MALE
         );
     }
@@ -45,7 +39,7 @@ public class PersonTest {
 
     @Test
     public void testImage() throws Exception {
-        assertEquals(image, person.image());
+        assertEquals("http://example.org/image.png", person.imageUrl());
     }
 
     @Test

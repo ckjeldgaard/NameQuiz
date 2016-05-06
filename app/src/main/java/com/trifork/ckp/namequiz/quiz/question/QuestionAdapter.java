@@ -1,6 +1,7 @@
 package com.trifork.ckp.namequiz.quiz.question;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,7 @@ public final class QuestionAdapter extends PagerAdapter implements QuestionContr
 
     private ImageView personImage;
 
-    public QuestionAdapter(List<Question> questions, Context context) {
+    public QuestionAdapter(@NonNull List<Question> questions, Context context) {
         this.questionPresenter = new QuestionPresenter(this);
         this.questions = questions;
         this.context = context;

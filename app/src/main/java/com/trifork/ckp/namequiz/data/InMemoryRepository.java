@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.model.Person;
+import com.trifork.ckp.namequiz.model.Quiz;
 
 import java.util.List;
 
@@ -41,13 +42,13 @@ public class InMemoryRepository implements Repository {
     }
 
     @Override
-    public void getPersons(@NonNull final LoadPersonsCallback callback, @NonNull Department department) {
+    public void produceQuiz(@NonNull final LoadQuizCallback callback, @NonNull Department department) {
         // TODO: Caching
         serviceApi.getPersonsBelongingToDepartment(new ServiceApi.ServiceCallback<List<Person>>() {
             @Override
             public void onLoaded(List<Person> persons) {
                 Log.d(TAG, "getPersons onLoaded() called");
-                callback.onPersonsLoaded(persons);
+                callback.onQuizLoaded(new Quiz(persons));
             }
 
             @Override

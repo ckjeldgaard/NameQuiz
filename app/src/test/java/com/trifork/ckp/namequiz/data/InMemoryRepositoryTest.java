@@ -36,7 +36,7 @@ public class InMemoryRepositoryTest {
     private Repository.LoadDepartmentsCallback loadDepartmentsCallback;
 
     @Mock
-    private Repository.LoadPersonsCallback loadPersonsCallback;
+    private Repository.LoadQuizCallback loadQuizCallback;
 
     @Captor
     private ArgumentCaptor<ServiceApi.ServiceCallback> serviceCallbackArgumentCaptor;
@@ -83,7 +83,7 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getPersonsBelongingToDepartment_requestsPersonsFromServiceApi() throws Exception {
-        repository.getPersons(loadPersonsCallback, DEPARTMENTS.get(0));
+        repository.produceQuiz(loadQuizCallback, DEPARTMENTS.get(0));
         verify(serviceApi).getPersonsBelongingToDepartment(any(ServiceApi.ServiceCallback.class), eq(DEPARTMENTS.get(0)));
     }
 

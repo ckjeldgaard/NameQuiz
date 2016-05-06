@@ -1,0 +1,107 @@
+{
+  "ckp": {
+    "department": "copenhagen",
+    "firstName": "Christoffer",
+    "fullName": "Christoffer Kjeldgaard Petersen",
+    "gender": "male",
+    "image": "https://secure.gravatar.com/avatar/4035274d86c27bc4cf70e31accfc2d7d.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2F7fa9%2Fimg%2Favatars%2Fava_0000-512.png"
+  },
+  "clb": {
+    "department": "copenhagen",
+    "firstName": "Casper",
+    "fullName": "Casper Bang",
+    "gender": "male",
+    "image": "https://avatars.slack-edge.com/2015-09-01/9996655874_e750856a557e686ca978_192.jpg"
+  },
+  "cmv": {
+    "department": "copenhagen",
+    "firstName": "Claus",
+    "fullName": "Claus Myglegaard Vagner",
+    "gender": "male",
+    "image": "https://avatars.slack-edge.com/2015-08-14/9123091205_7192ed84041abc827ec2_512.jpg"
+  },
+  "eak": {
+    "department": "copenhagen",
+    "firstName": "Emma",
+    "fullName": "Emma Arfelt Kock",
+    "gender": "female",
+    "image": "https://avatars.slack-edge.com/2016-02-01/19972767043_c31f7146e03a3af02586_512.jpg"
+  },
+  "jei": {
+    "department": "copenhagen",
+    "firstName": "Jacob",
+    "fullName": "Jacob Eisenberg",
+    "gender": "male",
+    "image": "https://avatars.slack-edge.com/2015-08-14/9122967734_3d07b27adf688782bd6f_512.jpg"
+  },
+  "lzv": {
+    "department": "copenhagen",
+    "firstName": "Linas",
+    "fullName": "Linas Zvirblis",
+    "gender": "male",
+    "image": "https://avatars.slack-edge.com/2015-12-03/15840617667_e3766a0942e722c7b659_512.jpg"
+  },
+  "mah": {
+    "department": "copenhagen",
+    "firstName": "Ayoub",
+    "fullName": "Mohamed Ayoub Hajjem",
+    "gender": "male",
+    "image": "https://avatars.slack-edge.com/2016-02-02/20084822677_c57d534be29ebf50556f_512.jpg"
+  },
+  "mer": {
+    "department": "copenhagen",
+    "firstName": "Martin",
+    "fullName": "Martin Erdal",
+    "gender": "Male",
+    "image": "https://avatars.slack-edge.com/2015-11-02/13681824007_229d89e07c0eceb8ad5a_192.jpg"
+  },
+  "mku": {
+    "department": "copenhagen",
+    "firstName": "Marcin",
+    "fullName": "Marcin Kuptel",
+    "gender": "male",
+    "image": "https://secure.gravatar.com/avatar/1a5913f727b01fc5b726bbb107bc76c2.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2F7fa9%2Fimg%2Favatars%2Fava_0012-512.png"
+  },
+  "mri": {
+    "department": "copenhagen",
+    "firstName": "Michael",
+    "fullName": "Michael Rimestad",
+    "gender": "male",
+    "image": "https://avatars.slack-edge.com/2015-08-19/9342232656_1bf6e68778899aa26dd0_512.jpg"
+  },
+  "msv": {
+    "department": "copenhagen",
+    "firstName": "Mette",
+    "fullName": "Svitring",
+    "gender": "female",
+    "image": "https://avatars.slack-edge.com/2015-08-18/9268668770_8b6303d0c146f2388b29_512.jpg"
+  },
+  "nyi": {
+    "department": "copenhagen",
+    "firstName": "Nursel",
+    "fullName": "Nursel Yildirim",
+    "gender": "female",
+    "image": "https://avatars.slack-edge.com/2015-08-17/9208988081_ca1208aafe15092eefd1_512.jpg"
+  },
+  "pro": {
+    "department": "copenhagen",
+    "firstName": "Peter",
+    "fullName": "Peter Rørsgaard",
+    "gender": "male",
+    "image": "https://avatars.slack-edge.com/2016-01-02/17640307842_b6600eb2d1edd182bcb5_512.png"
+  },
+  "sa": {
+    "department": "copenhagen",
+    "firstName": "Susie",
+    "fullName": "Susie Andersen",
+    "gender": "female",
+    "image": "https://avatars.slack-edge.com/2015-08-18/9271289296_118799b495bcbeb6447e_192.jpg"
+  },
+  "twf": {
+    "department": "copenhagen",
+    "firstName": "Thomas",
+    "fullName": "Thomas Fischer",
+    "gender": "male",
+    "image": "https://avatars.slack-edge.com/2015-10-29/13471314694_9f4ee0a4564978eaedf9_512.jpg"
+  }
+}

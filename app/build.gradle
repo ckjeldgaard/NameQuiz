@@ -27,10 +27,10 @@ android {
 
         }
     }
-    
+
     // Remove mockRelease as it's not needed.
     android.variantFilter { variant ->
-        if(variant.buildType.name.equals('release')
+        if (variant.buildType.name.equals('release')
                 && variant.getFlavors().get(0).name.equals('mock')) {
             variant.setIgnore(true);
         }
@@ -39,6 +39,13 @@ android {
     testOptions {
         unitTests {
             returnDefaultValues = true
+        }
+    }
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets', 'src/test/assets/']
+            resources.srcDirs = ['src/main/resources', 'src/test/resources/']
+            res.srcDirs = ['src/main/res', 'src/test/res']
         }
     }
 }
@@ -57,6 +64,7 @@ dependencies {
     // Dependencies for local unit tests
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-all:1.10.19"
+    testCompile 'com.google.code.gson:gson:2.4'
 
     // Android Testing Support Library's runner and rules
     androidTestCompile 'com.android.support.test:runner:0.4'

@@ -3,7 +3,7 @@ package com.trifork.ckp.namequiz.data;
 import android.support.annotation.NonNull;
 
 import com.trifork.ckp.namequiz.model.Department;
-import com.trifork.ckp.namequiz.model.Person;
+import com.trifork.ckp.namequiz.model.Quiz;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ public interface Repository {
         void onFailure(String errorMessage);
     }
 
-    interface LoadPersonsCallback {
-        void onPersonsLoaded(List<Person> persons);
+    interface LoadQuizCallback {
+        void onQuizLoaded(Quiz quiz);
         void onFailure(String errorMessage);
     }
 
     void getDepartments(@NonNull LoadDepartmentsCallback callback);
 
-    void getPersons(@NonNull LoadPersonsCallback callback, @NonNull Department department);
+    void produceQuiz(@NonNull final LoadQuizCallback callback, @NonNull Department department);
 
     void refreshData();
 }

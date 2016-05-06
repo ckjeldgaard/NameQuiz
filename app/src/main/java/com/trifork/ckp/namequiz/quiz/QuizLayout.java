@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,12 +13,8 @@ import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.Injection;
 import com.trifork.ckp.namequiz.R;
-import com.trifork.ckp.namequiz.model.Person;
-import com.trifork.ckp.namequiz.model.Question;
+import com.trifork.ckp.namequiz.model.Quiz;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import flow.Flow;
 
@@ -54,7 +49,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     @NonNull
     @Override
     public ViewState<QuizView> createViewState() {
-        return new RetainingLceViewState<List<Person>, QuizView>();
+        return new RetainingLceViewState<Quiz, QuizView>();
     }
 
     @Override
@@ -84,14 +79,14 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     }
 
     @Override
-    public void setData(final List<Person> persons) {
+    public void setData(Quiz data) {
         // TODO: Refactor
-        List<Question> questions = new ArrayList<Question>() {{
+        /*List<Question> questions = new ArrayList<Question>() {{
             add(new Question(persons.get(0)));
             add(new Question(persons.get(1)));
             add(new Question(persons.get(2)));
-        }};
-        questionPager.setAdapter(new QuestionAdapter(questions, getContext()));
+        }};*/
+        questionPager.setAdapter(new QuestionAdapter(null, getContext()));
     }
 
     @Override

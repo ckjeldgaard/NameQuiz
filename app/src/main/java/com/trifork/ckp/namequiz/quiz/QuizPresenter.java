@@ -7,6 +7,7 @@ import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.trifork.ckp.namequiz.data.Repository;
 import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.model.Person;
+import com.trifork.ckp.namequiz.model.Quiz;
 
 import java.util.List;
 
@@ -22,11 +23,11 @@ public final class QuizPresenter extends MvpBasePresenter<QuizView> {
     public void loadPersons(Department department) {
         getView().showLoading(false);
 
-        this.repository.getPersons(new Repository.LoadPersonsCallback() {
+        this.repository.produceQuiz(new Repository.LoadQuizCallback() {
             @Override
-            public void onPersonsLoaded(List<Person> persons) {
-                Log.d("QuizPresenter", "onPersonsLoaded() called with: " + "persons = [" + persons + "]");
-                getView().setData(persons);
+            public void onQuizLoaded(Quiz quiz) {
+                Log.d("QuizPresenter", "onPersonsLoaded() called with: " + "quiz = [" + quiz + "]");
+                getView().setData(quiz);
                 getView().showContent();
             }
 

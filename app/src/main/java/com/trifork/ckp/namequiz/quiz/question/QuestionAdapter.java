@@ -1,4 +1,4 @@
-package com.trifork.ckp.namequiz.quiz;
+package com.trifork.ckp.namequiz.quiz.question;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -46,8 +46,15 @@ public final class QuestionAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         ViewGroup layout = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.question_view, container, false);
 
+        int width = Math.round(context.getResources().getDimension(R.dimen.person_image_width));
+        int height = Math.round(context.getResources().getDimension(R.dimen.person_image_height));
+
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_person);
-        Picasso.with(context).load(getItem(position).person().imageUrl()).into(imageView);
+        Picasso.with(context)
+                .load(getItem(position).person().imageUrl())
+                .resize(width, height)
+                .centerCrop()
+                .into(imageView);
 
         container.addView(layout);
         return layout;

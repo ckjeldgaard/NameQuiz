@@ -1,8 +1,6 @@
 package com.trifork.ckp.namequiz.quiz;
 
 import android.test.AndroidTestCase;
-import android.test.mock.MockContext;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -10,6 +8,7 @@ import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.model.Gender;
 import com.trifork.ckp.namequiz.model.Person;
 import com.trifork.ckp.namequiz.model.Question;
+import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
 
 import org.junit.Test;
 import org.mockito.Mock;

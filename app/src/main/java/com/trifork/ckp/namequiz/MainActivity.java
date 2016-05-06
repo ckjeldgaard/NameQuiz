@@ -1,8 +1,11 @@
 package com.trifork.ckp.namequiz;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 
 import com.firebase.client.ChildEventListener;
@@ -16,6 +19,8 @@ import com.trifork.ckp.namequiz.flow.NameQuizKeyParceler;
 import com.trifork.ckp.namequiz.quiz.QuizScreen;
 import com.trifork.ckp.namequiz.start.StartScreen;
 
+import java.io.ByteArrayOutputStream;
+
 import flow.Flow;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,54 +31,13 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_main);
 
-        // Get a reference to our posts
-        /*Firebase ref = new Firebase("https://popping-fire-4168.firebaseio.com/data/persons");
-        Query queryRef = ref.orderByChild("department").startAt("aarhus").endAt("aarhus");
-
-        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String name = (String) snapshot.child("firstName").getValue();
-                    Log.d("Firebase", "name = " + name);
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-
-        /*queryRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
-                Object o = snapshot.getValue();
-
-                String name = (String) snapshot.child("firstName").getValue();
-                Log.d("Firebase", "name = " + name);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.d("Firebase", "onChildChanged() called with: " + "dataSnapshot = [" + dataSnapshot + "], s = [" + s + "]");
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d("Firebase", "onChildRemoved() called with: " + "dataSnapshot = [" + dataSnapshot + "]");
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                Log.d("Firebase", "onChildMoved() called with: " + "dataSnapshot = [" + dataSnapshot + "], s = [" + s + "]");
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                Log.d("Firebase", "onCancelled() called with: " + "firebaseError = [" + firebaseError + "]");
-            }
-        });*/
+        /*Bitmap bmp =  BitmapFactory.decodeResource(getResources(), R.drawable.person); //your image
+        ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, bYtE);
+        bmp.recycle();
+        byte[] byteArray = bYtE.toByteArray();
+        String imageFile = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        Log.d("MAIN", imageFile);*/
 
         // Attach an listener to read the data at our posts reference
         /*queryRef.addValueEventListener(new ValueEventListener() {

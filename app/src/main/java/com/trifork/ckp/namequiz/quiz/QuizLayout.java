@@ -94,7 +94,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
             add(new Question(persons.get(1)));
             add(new Question(persons.get(2)));
         }};
-        questionPager.setAdapter(new QuestionAdapter(questions, LayoutInflater.from(getContext())));
+        questionPager.setAdapter(new QuestionAdapter(questions, getContext()));
     }
 
     @Override

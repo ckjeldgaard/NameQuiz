@@ -54,15 +54,12 @@ public class QuestionAdapterTest extends AndroidTestCase {
     @Mock
     private ViewGroup container;
 
-    @Mock
-    private LayoutInflater layoutInflater;
-
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         MockitoAnnotations.initMocks(this);
         setContext(getContext());
-        questionAdapter = new QuestionAdapter(QUESTIONS, layoutInflater);
+        questionAdapter = new QuestionAdapter(QUESTIONS, getContext());
     }
 
     @Test
@@ -83,11 +80,6 @@ public class QuestionAdapterTest extends AndroidTestCase {
     }
 
     @Test
-    public void testInstantiateItem() throws Exception {
-        ViewGroup layout = (ViewGroup) questionAdapter.instantiateItem(container, 0);
-        verify(container).addView(layout);
-    }
-
     public void testGetItem() throws Exception {
         Question question = questionAdapter.getItem(0);
 

@@ -7,14 +7,14 @@ public final class Person {
     private final String firstName;
     private final String fullName;
     private final Department department;
-    private final Bitmap image;
+    private final String imageUrl;
     private final Gender gender;
 
-    public Person(String firstName, String fullName, Department department, Bitmap image, Gender gender) {
+    public Person(String firstName, String fullName, Department department, String imageUrl, Gender gender) {
         this.firstName = firstName;
         this.fullName = fullName;
         this.department = department;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.gender = gender;
     }
 
@@ -30,8 +30,8 @@ public final class Person {
         return department;
     }
 
-    public Bitmap image() {
-        return image;
+    public String imageUrl() {
+        return imageUrl;
     }
 
     public Gender gender() {

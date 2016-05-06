@@ -83,7 +83,7 @@ public class FirebaseServiceApi implements ServiceApi {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String firstName = (String) snapshot.child("firstName").getValue();
                     String fullName = (String) snapshot.child("fullName").getValue();
-                    String image = (String) snapshot.child("image").getValue();
+                    String imageUrl = (String) snapshot.child("image").getValue();
                     String genderString = (String) snapshot.child("gender").getValue();
                     Gender gender = genderString.equals("male") ? Gender.MALE : Gender.FEMALE;
 
@@ -92,7 +92,7 @@ public class FirebaseServiceApi implements ServiceApi {
                                 firstName,
                                 fullName,
                                 department,
-                                convertBase64ToBitmap(image),
+                                imageUrl,
                                 gender
                             )
                     );
@@ -109,10 +109,5 @@ public class FirebaseServiceApi implements ServiceApi {
                 Log.e(TAG, "The getPersonsBelongingToDepartment read failed: " + firebaseError.getMessage());
             }
         });
-    }
-
-    private Bitmap convertBase64ToBitmap(String encodedImage) {
-        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
 }

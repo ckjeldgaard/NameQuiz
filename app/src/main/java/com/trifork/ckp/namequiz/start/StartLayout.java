@@ -24,9 +24,9 @@ import java.util.List;
 
 import flow.Flow;
 
-public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.StartView, StartPresenter> implements StartContract.StartView {
+public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.StartView, StartContract.UserActionsListener> implements StartContract.StartView {
 
-    private final StartPresenter presenter;
+    private final StartContract.UserActionsListener presenter;
     private List<Department> departments;
 
     private RelativeLayout contentView;
@@ -45,7 +45,7 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.
 
     @NonNull
     @Override
-    public StartPresenter createPresenter() {
+    public StartContract.UserActionsListener createPresenter() {
         return this.presenter;
     }
 

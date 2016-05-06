@@ -6,25 +6,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.Question;
 
 import java.util.List;
 
-public final class QuestionAdapter extends PagerAdapter {
+public final class QuestionAdapter extends PagerAdapter implements QuestionContract.QuestionView {
 
     private final List<Question> questions;
     private final Context context;
 
+    private final QuestionContract.UserActionsListener questionPresenter;
+
+    private ImageView personImage;
+
     public QuestionAdapter(List<Question> questions, Context context) {
+        this.questionPresenter = new QuestionPresenter(this);
         this.questions = questions;
         this.context = context;
     }
 
+    @Override
     public Question getItem(int position) {
         return this.questions.get(position);
+    }
+
+    @Override
+    public ImageView getPersonImage() {
+        return this.personImage;
     }
 
     @Override
@@ -46,15 +55,8 @@ public final class QuestionAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         ViewGroup layout = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.question_view, container, false);
 
-        int width = Math.round(context.getResources().getDimension(R.dimen.person_image_width));
-        int height = Math.round(context.getResources().getDimension(R.dimen.person_image_height));
-
-        ImageView imageView = (ImageView) layout.findViewById(R.id.image_person);
-        Picasso.with(context)
-                .load(getItem(position).person().imageUrl())
-                .resize(width, height)
-                .centerCrop()
-                .into(imageView);
+        this.personImage = (ImageView) layout.findViewById(R.id.image_person);
+        this.questionPresenter.loadQuestion(position, this.context);
 
         container.addView(layout);
         return layout;

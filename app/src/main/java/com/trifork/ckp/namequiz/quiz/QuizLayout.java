@@ -86,7 +86,6 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     @Override
     public void setData(final List<Person> persons) {
         // TODO: Refactor
-        Log.d("QuizLayout", "setData() called with: " + "data = [" + persons + "]");
         List<Question> questions = new ArrayList<Question>() {{
             add(new Question(persons.get(0)));
             add(new Question(persons.get(1)));

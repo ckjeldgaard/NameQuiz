@@ -17,6 +17,7 @@ public class StartPresenter extends MvpBasePresenter<StartContract.StartView> im
         this.attachView(view);
     }
 
+    @Override
     public void loadDepartments() {
         getView().showLoading(false);
 

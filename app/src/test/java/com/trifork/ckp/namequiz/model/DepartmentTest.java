@@ -1,11 +1,14 @@
 package com.trifork.ckp.namequiz.model;
 
+import android.os.Parcel;
+import android.test.AndroidTestCase;
+
+import com.trifork.ckp.namequiz.mock.MockParcel;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class DepartmentTest {
+public class DepartmentTest extends AndroidTestCase {
 
     private Department department;
 
@@ -27,5 +30,18 @@ public class DepartmentTest {
     @Test
     public void testToString() throws Exception {
         assertEquals("Copenhagen", department.toString());
+    }
+
+    @Test
+    public void testParcelableImplementation() throws Exception {
+        Parcel parcel = new MockParcel().getMockedParcel();
+        department.writeToParcel(parcel, 0);
+
+        // Reset the parcel for reading:
+        parcel.setDataPosition(0);
+
+        // Reconstruct object from parcel and assert:
+        Department departmentCreatedFromParcel = Department.CREATOR.createFromParcel(parcel);
+        assertEquals(department, departmentCreatedFromParcel);
     }
 }

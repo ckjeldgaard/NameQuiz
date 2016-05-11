@@ -40,58 +40,64 @@
                 android:layout_gravity="center_horizontal"
                 />
 
-            <GridLayout
+            <TableLayout
                 android:id="@+id/grid_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                >
+                android:stretchColumns="*">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="James"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:background="@drawable/question_btn"
-                    android:textColor="@color/white"
-                    android:layout_margin="8dp"
-                    />
+                <TableRow>
+                    <Button
+                        android:id="@+id/option_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="James"
+                        android:layout_gravity="center"
+                        android:background="@drawable/question_btn"
+                        android:textColor="@color/white"
+                        android:layout_margin="8dp"
+                        />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="John"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:background="@drawable/question_btn"
-                    android:textColor="@color/white"
-                    android:layout_margin="8dp"
-                    />
+                    <Button
+                        android:id="@+id/option_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="John"
+                        android:layout_gravity="center"
+                        android:background="@drawable/question_btn"
+                        android:textColor="@color/white"
+                        android:layout_margin="8dp"
+                        />
+                </TableRow>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Robert"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:background="@drawable/question_btn"
-                    android:textColor="@color/white"
-                    android:layout_margin="8dp"
-                    />
+                <TableRow>
+                    <Button
+                        android:id="@+id/option_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Robert"
+                        android:layout_gravity="center"
+                        android:background="@drawable/question_btn"
+                        android:textColor="@color/white"
+                        android:layout_margin="8dp"
+                        />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Richard"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:background="@drawable/question_btn"
-                    android:textColor="@color/white"
-                    android:layout_margin="8dp"
-                    />
-
-            </GridLayout>
+                    <Button
+                        android:id="@+id/option_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Richard"
+                        android:layout_gravity="center"
+                        android:background="@drawable/question_btn"
+                        android:textColor="@color/white"
+                        android:layout_margin="8dp"
+                        />
+                </TableRow>
+            </TableLayout>
 
         </LinearLayout>
 

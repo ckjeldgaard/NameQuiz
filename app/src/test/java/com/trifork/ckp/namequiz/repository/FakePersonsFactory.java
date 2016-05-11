@@ -16,13 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class StubbedData {
+public class FakePersonsFactory {
 
-    private static final String TAG = StubbedData.class.getSimpleName();
+    private static final String TAG = FakePersonsFactory.class.getSimpleName();
 
     private static final String PERSONS_JSON = "persons.json";
 
-    public StubbedData() {
+    public FakePersonsFactory() {
     }
 
     public Department produceDepartment() {

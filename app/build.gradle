@@ -43,8 +43,8 @@ android {
     }
     sourceSets {
         main {
-            assets.srcDirs = ['src/main/assets', 'src/test/assets/']
-            resources.srcDirs = ['src/main/resources', 'src/test/resources/']
+            assets.srcDirs = ['src/main/assets', 'src/test/assets/', 'src/main/assets/']
+            resources.srcDirs = ['src/main/resources', 'src/test/resources/', 'src/main/resources/']
             res.srcDirs = ['src/main/res', 'src/test/res']
         }
     }
@@ -60,11 +60,11 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.google.code.gson:gson:2.4'
 
     // Dependencies for local unit tests
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-all:1.10.19"
-    testCompile 'com.google.code.gson:gson:2.4'
 
     // Android Testing Support Library's runner and rules
     androidTestCompile 'com.android.support.test:runner:0.4'

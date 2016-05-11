@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.trifork.ckp.namequiz.model.Department;
+import com.trifork.ckp.namequiz.model.NameQuiz;
 import com.trifork.ckp.namequiz.model.Person;
 import com.trifork.ckp.namequiz.model.Quiz;
 
@@ -48,7 +49,7 @@ public class InMemoryRepository implements Repository {
             @Override
             public void onLoaded(List<Person> persons) {
                 Log.d(TAG, "getPersons onLoaded() called");
-                callback.onQuizLoaded(new Quiz(persons));
+                callback.onQuizLoaded(new NameQuiz(persons));
             }
 
             @Override

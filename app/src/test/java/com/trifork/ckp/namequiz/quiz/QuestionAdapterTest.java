@@ -4,6 +4,7 @@ import android.test.AndroidTestCase;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trifork.ckp.namequiz.model.AnswerOption;
 import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.model.Gender;
 import com.trifork.ckp.namequiz.model.Person;
@@ -21,6 +22,11 @@ import static org.mockito.Mockito.verify;
 
 public class QuestionAdapterTest extends AndroidTestCase {
 
+    private static List<AnswerOption> ANSWER_OPTIONS = new ArrayList<AnswerOption>() {{
+        add(new AnswerOption("Jeff"));
+        add(new AnswerOption("Joe"));
+        add(new AnswerOption("James"));
+    }};
     private static List<Question> QUESTIONS = new ArrayList<Question>() {{
         add(new Question(new Person(
                 "John",
@@ -28,21 +34,21 @@ public class QuestionAdapterTest extends AndroidTestCase {
                 new Department(1, "Copenhagen"),
                 null,
                 Gender.MALE
-        )));
+        ), ANSWER_OPTIONS));
         add(new Question(new Person(
                 "John",
                 "John Doe",
                 new Department(1, "Copenhagen"),
                 null,
                 Gender.MALE
-        )));
+        ), ANSWER_OPTIONS));
         add(new Question(new Person(
                 "John",
                 "John Doe",
                 new Department(1, "Copenhagen"),
                 null,
                 Gender.MALE
-        )));
+        ), ANSWER_OPTIONS));
     }};
 
     private QuestionAdapter questionAdapter;

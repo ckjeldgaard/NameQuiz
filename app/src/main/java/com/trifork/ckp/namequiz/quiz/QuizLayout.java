@@ -79,14 +79,14 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     }
 
     @Override
-    public void setData(Quiz data) {
+    public void setData(Quiz quiz) {
         // TODO: Refactor
         /*List<Question> questions = new ArrayList<Question>() {{
             add(new Question(persons.get(0)));
             add(new Question(persons.get(1)));
             add(new Question(persons.get(2)));
         }};*/
-        questionPager.setAdapter(new QuestionAdapter(null, getContext()));
+        questionPager.setAdapter(new QuestionAdapter(quiz.getQuestions(), getContext()));
     }
 
     @Override

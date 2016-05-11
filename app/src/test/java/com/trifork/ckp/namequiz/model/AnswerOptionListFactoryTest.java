@@ -1,6 +1,6 @@
 package com.trifork.ckp.namequiz.model;
 
-import com.trifork.ckp.namequiz.repository.FakePersonsFactory;
+import com.trifork.ckp.namequiz.fakes.FakePersonsFactory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class AnswerOptionListFactoryTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        persons = new FakePersonsFactory().producePersons();
+        persons = new FakePersonsFactory().producePersons("persons.json");
     }
 
     @Test

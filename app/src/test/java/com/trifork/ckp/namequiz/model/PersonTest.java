@@ -1,5 +1,8 @@
 package com.trifork.ckp.namequiz.model;
 
+import com.trifork.ckp.namequiz.fakes.FakeDepartmentsFactory;
+import com.trifork.ckp.namequiz.fakes.FakePersonsFactory;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,14 +15,8 @@ public class PersonTest {
 
     @Before
     public void setUp() throws Exception {
-        department = new Department(1, "Copenhagen");
-        person = new Person(
-                "John",
-                "John Doe",
-                department,
-                "http://example.org/image.png",
-                Gender.MALE
-        );
+        department = new FakeDepartmentsFactory().produceDepartment("department.json");
+        person = new FakePersonsFactory().producePerson("person.json");
     }
 
     @Test
@@ -34,7 +31,8 @@ public class PersonTest {
 
     @Test
     public void testDepartment() throws Exception {
-        assertEquals(department, person.department());
+        assertEquals(department.getDepartmentName(), person.department().getDepartmentName());
+        assertEquals(department.getId(), person.department().getId());
     }
 
     @Test

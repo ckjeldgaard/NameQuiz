@@ -42,6 +42,16 @@ public class DepartmentTest extends AndroidTestCase {
 
         // Reconstruct object from parcel and assert:
         Department departmentCreatedFromParcel = Department.CREATOR.createFromParcel(parcel);
-        assertEquals(department, departmentCreatedFromParcel);
+        assertEquals(department.getDepartmentName(), departmentCreatedFromParcel.getDepartmentName());
+        assertEquals(department.getId(), departmentCreatedFromParcel.getId());
+    }
+
+    @Test
+    public void testParcelableArrayImplementation() throws Exception {
+        Parcel parcel = new MockParcel().getMockedParcel();
+        department.writeToParcel(parcel, 0);
+        parcel.setDataPosition(0);
+        Department[] departmentCreatedFromParcel = Department.CREATOR.newArray(3);
+        assertEquals(3, departmentCreatedFromParcel.length);
     }
 }

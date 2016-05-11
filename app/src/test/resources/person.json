@@ -1,0 +1,9 @@
+{
+  "joe": {
+    "department": "copenhagen",
+    "firstName": "John",
+    "fullName": "John Doe",
+    "gender": "male",
+    "image": "http://example.org/image.png"
+  }
+}

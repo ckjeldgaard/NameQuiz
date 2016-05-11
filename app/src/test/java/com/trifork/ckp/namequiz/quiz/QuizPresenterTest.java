@@ -1,6 +1,7 @@
 package com.trifork.ckp.namequiz.quiz;
 
 import com.trifork.ckp.namequiz.data.Repository;
+import com.trifork.ckp.namequiz.fakes.FakeDepartmentsFactory;
 import com.trifork.ckp.namequiz.model.Department;
 
 import org.junit.Before;
@@ -12,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class QuizPresenterTest {
 
-    private static final Department DEPARTMENT = new Department(1, "Copenhagen");
+    private static final Department DEPARTMENT = new FakeDepartmentsFactory().produceDepartment("department.json");
 
     private QuizPresenter quizPresenter;
 

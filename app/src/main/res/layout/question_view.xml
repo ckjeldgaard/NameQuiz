@@ -33,8 +33,8 @@
                 android:layout_marginBottom="@dimen/screen_vertical_margin" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/person_image_width"
+                android:layout_height="@dimen/person_image_height"
                 android:id="@+id/image_person"
                 android:layout_marginBottom="@dimen/screen_vertical_margin"
                 android:layout_gravity="center_horizontal"

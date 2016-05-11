@@ -9,8 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public final class JsonFile implements File {
-    private static final String TAG = JsonFile.class.getSimpleName();
-
     private final String fileName;
 
     public JsonFile(String fileName) {

@@ -1,6 +1,7 @@
 package com.trifork.ckp.namequiz.start;
 
 import com.trifork.ckp.namequiz.data.Repository;
+import com.trifork.ckp.namequiz.fakes.FakeDepartmentsFactory;
 import com.trifork.ckp.namequiz.model.Department;
 
 import org.junit.Before;
@@ -20,9 +21,10 @@ import static org.mockito.Mockito.verify;
  */
 public class StartPresenterTest {
 
+    private static final Department DEPARTMENT = new FakeDepartmentsFactory().produceDepartment("department.json");
     private static List<Department> DEPARTMENTS = new ArrayList<Department>() {{
-        add(new Department(1, "Copenhagen"));
-        add(new Department(2, "Aarhus"));
+        add(DEPARTMENT);
+        add(DEPARTMENT);
     }};
 
     @Mock

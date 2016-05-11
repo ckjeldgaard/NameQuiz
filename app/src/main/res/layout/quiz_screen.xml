@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v4.view.ViewPager
+        <com.trifork.ckp.namequiz.view.NonSwipeableViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/question_pager"
             android:layout_width="match_parent"

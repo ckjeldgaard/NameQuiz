@@ -4,9 +4,9 @@ import android.test.AndroidTestCase;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trifork.ckp.namequiz.fakes.FakeAnswerOptionsFactory;
+import com.trifork.ckp.namequiz.fakes.FakePersonsFactory;
 import com.trifork.ckp.namequiz.model.AnswerOption;
-import com.trifork.ckp.namequiz.model.Department;
-import com.trifork.ckp.namequiz.model.Gender;
 import com.trifork.ckp.namequiz.model.Person;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
@@ -22,33 +22,12 @@ import static org.mockito.Mockito.verify;
 
 public class QuestionAdapterTest extends AndroidTestCase {
 
-    private static List<AnswerOption> ANSWER_OPTIONS = new ArrayList<AnswerOption>() {{
-        add(new AnswerOption("Jeff"));
-        add(new AnswerOption("Joe"));
-        add(new AnswerOption("James"));
-    }};
+    private static Person PERSON = new FakePersonsFactory().producePerson("person.json");
+    private static List<AnswerOption> ANSWER_OPTIONS = new FakeAnswerOptionsFactory().produceAnswerOptions("answer_options.json");
     private static List<Question> QUESTIONS = new ArrayList<Question>() {{
-        add(new Question(new Person(
-                "John",
-                "John Doe",
-                new Department(1, "Copenhagen"),
-                null,
-                Gender.MALE
-        ), ANSWER_OPTIONS));
-        add(new Question(new Person(
-                "John",
-                "John Doe",
-                new Department(1, "Copenhagen"),
-                null,
-                Gender.MALE
-        ), ANSWER_OPTIONS));
-        add(new Question(new Person(
-                "John",
-                "John Doe",
-                new Department(1, "Copenhagen"),
-                null,
-                Gender.MALE
-        ), ANSWER_OPTIONS));
+        add(new Question(PERSON, ANSWER_OPTIONS));
+        add(new Question(PERSON, ANSWER_OPTIONS));
+        add(new Question(PERSON, ANSWER_OPTIONS));
     }};
 
     private QuestionAdapter questionAdapter;
@@ -86,7 +65,7 @@ public class QuestionAdapterTest extends AndroidTestCase {
 
     @Test
     public void testGetItem() throws Exception {
-        Question question = questionAdapter.getItem(0);
+        Question question = questionAdapter.getQuestion(0);
 
         assertEquals(QUESTIONS.get(0), question);
     }

@@ -17,8 +17,8 @@ public final class QuestionPresenter extends MvpBasePresenter<QuestionContract.Q
     }
 
     @Override
-    public void loadQuestion(final int position, Context context) {
-        Question question = getView().getQuestion(position);
+    public void loadQuestion(Context context) {
+        Question question = getView().getQuestion();
 
         int width = Math.round(context.getResources().getDimension(R.dimen.person_image_width));
         int height = Math.round(context.getResources().getDimension(R.dimen.person_image_height));
@@ -34,9 +34,15 @@ public final class QuestionPresenter extends MvpBasePresenter<QuestionContract.Q
     }
 
     @Override
-    public void selectPerson(int questionIndex, int answerOptionIndex) {
-        Log.d(TAG, "Selecting person at index " + answerOptionIndex + " = " + getView().getQuestion(questionIndex).answerOptions().get(answerOptionIndex).displayOption());
+    public void selectPerson(int answerOptionIndex) {
+        Log.d(TAG, "Selecting person at index " + answerOptionIndex + " = " + getView().getQuestion().answerOptions().get(answerOptionIndex).displayOption());
         getView().enableNextButton();
+        getView().setSelected(answerOptionIndex);
+    }
+
+    @Override
+    public void nextQuestion() {
+        getView().swipeToNextPage();
     }
 
 }

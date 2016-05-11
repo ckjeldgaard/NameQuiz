@@ -13,12 +13,17 @@ import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.Injection;
 import com.trifork.ckp.namequiz.R;
+import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.model.Quiz;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
+import com.trifork.ckp.namequiz.quiz.question.QuestionLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import flow.Flow;
 
-public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizPresenter> implements QuizView {
+public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizPresenter> implements QuizView, PagerActions {
 
     private RelativeLayout contentView;
     private TextView errorView;
@@ -80,18 +85,25 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
 
     @Override
     public void setData(Quiz quiz) {
-        // TODO: Refactor
-        /*List<Question> questions = new ArrayList<Question>() {{
-            add(new Question(persons.get(0)));
-            add(new Question(persons.get(1)));
-            add(new Question(persons.get(2)));
-        }};*/
-        questionPager.setAdapter(new QuestionAdapter(quiz.getQuestions(), getContext()));
+
+        List<QuestionLayout> questionLayouts = new ArrayList<>();
+        for (Question question : quiz.getQuestions()) {
+            questionLayouts.add(
+                    new QuestionLayout(getContext(), question, this)
+            );
+        }
+
+        questionPager.setAdapter(new QuestionAdapter(questionLayouts));
     }
 
     @Override
     public void loadData(boolean pullToRefresh) {
         QuizScreen screen = Flow.getKey(this);
         this.presenter.loadPersons(screen.department);
+    }
+
+    @Override
+    public void moveNext() {
+        this.questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);
     }
 }

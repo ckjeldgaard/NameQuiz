@@ -10,6 +10,7 @@ import com.trifork.ckp.namequiz.model.AnswerOption;
 import com.trifork.ckp.namequiz.model.Person;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
+import com.trifork.ckp.namequiz.quiz.question.QuestionLayout;
 
 import org.junit.Test;
 import org.mockito.Mock;
@@ -38,17 +39,20 @@ public class QuestionAdapterTest extends AndroidTestCase {
     @Mock
     private ViewGroup container;
 
+    @Mock
+    private List<QuestionLayout> questionLayouts;
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         MockitoAnnotations.initMocks(this);
         setContext(getContext());
-        questionAdapter = new QuestionAdapter(QUESTIONS, getContext());
+        questionAdapter = new QuestionAdapter(questionLayouts);
     }
 
     @Test
     public void testGetCount() {
-        assertEquals(QUESTIONS.size(), questionAdapter.getCount());
+        assertEquals(questionLayouts.size(), questionAdapter.getCount());
     }
 
     @Test
@@ -61,12 +65,5 @@ public class QuestionAdapterTest extends AndroidTestCase {
         questionAdapter.destroyItem(container, 0, view);
 
         verify(container).removeView(view);
-    }
-
-    @Test
-    public void testGetItem() throws Exception {
-        Question question = questionAdapter.getQuestion(0);
-
-        assertEquals(QUESTIONS.get(0), question);
     }
 }

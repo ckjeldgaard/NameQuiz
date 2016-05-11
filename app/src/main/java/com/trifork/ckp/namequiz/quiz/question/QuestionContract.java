@@ -12,14 +12,17 @@ import java.util.List;
 public interface QuestionContract {
 
     interface QuestionView extends MvpView {
-        Question getQuestion(int position);
+        Question getQuestion();
         ImageView getPersonImage();
         void setNames(List<AnswerOption> answerOptions);
+        void setSelected(int index);
         void enableNextButton();
+        void swipeToNextPage();
     }
 
     interface UserActionsListener {
-        void loadQuestion(int position, Context context);
-        void selectPerson(int questionIndex, int answerOptionIndex);
+        void loadQuestion(Context context);
+        void selectPerson(int answerOptionIndex);
+        void nextQuestion();
     }
 }

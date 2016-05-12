@@ -4,181 +4,181 @@
     "firstName": "Virginia",
     "fullName": "Virginia Turner",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "sp": {
     "department": "copenhagen",
     "firstName": "Sara",
     "fullName": "Sara Patterson",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "rs": {
     "department": "copenhagen",
     "firstName": "Ruby",
     "fullName": "Ruby Sanchez",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "pp": {
     "department": "copenhagen",
     "firstName": "Patricia",
     "fullName": "Patricia Peterson",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "sc": {
     "department": "copenhagen",
     "firstName": "Sharon",
     "fullName": "Sharon Campbell",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "jg": {
     "department": "copenhagen",
     "firstName": "Jason",
     "fullName": "Jason Garcia",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "jga": {
     "department": "copenhagen",
     "firstName": "Jason",
     "fullName": "Jason Garcia",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "dc": {
     "department": "copenhagen",
     "firstName": "Douglas",
     "fullName": "Douglas Clark",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "rh": {
     "department": "copenhagen",
     "firstName": "Ruth",
     "fullName": "Ruth Hill",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "cs": {
     "department": "copenhagen",
     "firstName": "Carol",
     "fullName": "Carol Scott",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "jr": {
     "department": "copenhagen",
     "firstName": "Joan",
     "fullName": "Joan Rodriguez",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "mr": {
     "department": "copenhagen",
     "firstName": "Michael",
     "fullName": "Michael Roberts",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "ar": {
     "department": "copenhagen",
     "firstName": "Adam",
     "fullName": "Adam Reed",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "ey": {
     "department": "copenhagen",
     "firstName": "Eric",
     "fullName": "Eric Young",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "gj": {
     "department": "copenhagen",
     "firstName": "Gloria",
     "fullName": "Gloria Johnson",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "tk": {
     "department": "copenhagen",
     "firstName": "Theresa",
     "fullName": "Theresa Kelly",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "tc": {
     "department": "copenhagen",
     "firstName": "Tina",
     "fullName": "Tina Cooper",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "rp": {
     "department": "copenhagen",
     "firstName": "Roy",
     "fullName": "Roy Perez",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "rhu": {
     "department": "copenhagen",
     "firstName": "Ralph",
     "fullName": "Ralph Hughes",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "aro": {
     "department": "copenhagen",
     "firstName": "Aaron",
     "fullName": "Aaron Ross",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "dg": {
     "department": "copenhagen",
     "firstName": "Donald",
     "fullName": "Donald Green",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "cb": {
     "department": "copenhagen",
     "firstName": "Cynthia",
     "fullName": "Cynthia Brown",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "gb": {
     "department": "copenhagen",
     "firstName": "Gary",
     "fullName": "Gary Baker",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "pw": {
     "department": "copenhagen",
     "firstName": "Patrick",
     "fullName": "Patrick Walker",
     "gender": "male",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "rl": {
     "department": "copenhagen",
     "firstName": "Rose",
     "fullName": "Rose Lewis",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   },
   "km": {
     "department": "copenhagen",
     "firstName": "Kevin",
     "fullName": "Kevin Morris",
     "gender": "female",
-    "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
+    "image": "http://example.org/image.png"
   }
 }

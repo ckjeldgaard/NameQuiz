@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.trifork.ckp.namequiz.Injection;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.AnswerOption;
 import com.trifork.ckp.namequiz.model.Question;
@@ -30,7 +31,7 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
         super(context);
         this.question = question;
         this.pagerActions = pagerActions;
-        this.presenter = new QuestionPresenter(this);
+        this.presenter = new QuestionPresenter(this, new Injection().providePersonImage(context));
         this.inflateLayout(context);
     }
 
@@ -91,7 +92,7 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
     }
 
     @Override
-    public ImageView getPersonImage() {
+    public ImageView getPersonImageView() {
         return this.personImage;
     }
 

@@ -2,7 +2,7 @@ package com.trifork.ckp.namequiz.quiz.question;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import com.trifork.ckp.namequiz.view.ViewPagerAdapter;
+import com.trifork.ckp.namequiz.util.ViewPagerAdapter;
 
 import java.util.List;
 

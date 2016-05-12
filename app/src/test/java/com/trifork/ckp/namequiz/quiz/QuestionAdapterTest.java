@@ -23,14 +23,6 @@ import static org.mockito.Mockito.verify;
 
 public class QuestionAdapterTest extends AndroidTestCase {
 
-    private static Person PERSON = new FakePersonsFactory().producePerson("person.json");
-    private static List<AnswerOption> ANSWER_OPTIONS = new FakeAnswerOptionsFactory().produceAnswerOptions("answer_options.json");
-    private static List<Question> QUESTIONS = new ArrayList<Question>() {{
-        add(new Question(PERSON, ANSWER_OPTIONS));
-        add(new Question(PERSON, ANSWER_OPTIONS));
-        add(new Question(PERSON, ANSWER_OPTIONS));
-    }};
-
     private QuestionAdapter questionAdapter;
 
     @Mock

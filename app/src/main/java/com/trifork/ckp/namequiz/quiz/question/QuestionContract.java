@@ -13,7 +13,7 @@ public interface QuestionContract {
 
     interface QuestionView extends MvpView {
         Question getQuestion();
-        ImageView getPersonImage();
+        ImageView getPersonImageView();
         void setNames(List<AnswerOption> answerOptions);
         void setSelected(int index);
         void enableNextButton();

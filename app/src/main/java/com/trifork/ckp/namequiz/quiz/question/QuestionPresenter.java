@@ -4,32 +4,27 @@ import android.content.Context;
 import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-import com.squareup.picasso.Picasso;
-import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.Question;
+import com.trifork.ckp.namequiz.util.PersonImage;
 
 public final class QuestionPresenter extends MvpBasePresenter<QuestionContract.QuestionView> implements QuestionContract.UserActionsListener {
 
     private static final String TAG = QuestionAdapter.class.getSimpleName();
 
-    public QuestionPresenter(QuestionContract.QuestionView view) {
+    private final PersonImage personImage;
+
+    public QuestionPresenter(QuestionContract.QuestionView view, PersonImage personImage) {
         this.attachView(view);
+        this.personImage = personImage;
     }
 
     @Override
     public void loadQuestion(Context context) {
         Question question = getView().getQuestion();
-
-        int width = Math.round(context.getResources().getDimension(R.dimen.person_image_width));
-        int height = Math.round(context.getResources().getDimension(R.dimen.person_image_height));
-
-        Picasso.with(context)
-                .load(question.person().imageUrl())
-                .placeholder(R.drawable.progress_animation)
-                .resize(width, height)
-                .centerCrop()
-                .into(getView().getPersonImage());
-
+        personImage.loadImage(
+                question.person().imageUrl(),
+                getView().getPersonImageView()
+        );
         getView().setNames(question.answerOptions());
     }
 

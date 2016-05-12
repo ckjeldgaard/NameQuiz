@@ -9,8 +9,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.*;
-
 public class QuizPresenterTest {
 
     private static final Department DEPARTMENT = new FakeDepartmentsFactory().produceDepartment("department.json");

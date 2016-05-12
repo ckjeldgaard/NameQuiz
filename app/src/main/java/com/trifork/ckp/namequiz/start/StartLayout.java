@@ -39,7 +39,10 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.
 
     public StartLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.presenter = new StartPresenter(Injection.provideRepository(), this);
+        this.presenter = new StartPresenter(
+                new Injection().provideRepository(),
+                this
+        );
         this.departments = new ArrayList<>(0);
     }
 

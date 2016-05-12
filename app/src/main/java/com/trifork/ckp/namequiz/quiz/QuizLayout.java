@@ -37,7 +37,10 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     @NonNull
     @Override
     public QuizPresenter createPresenter() {
-        return new QuizPresenter(Injection.provideRepository(), this);
+        return new QuizPresenter(
+                new Injection().provideRepository(),
+                this
+        );
     }
 
     @Override

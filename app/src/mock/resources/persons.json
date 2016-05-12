@@ -41,7 +41,7 @@
     "gender": "male",
     "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
   },
-  "jg": {
+  "jga": {
     "department": "copenhagen",
     "firstName": "Jason",
     "fullName": "Jason Garcia",
@@ -125,7 +125,7 @@
     "gender": "male",
     "image": "http://domaingang.com/wp-content/uploads/2012/02/example.png"
   },
-  "rh": {
+  "rhu": {
     "department": "copenhagen",
     "firstName": "Ralph",
     "fullName": "Ralph Hughes",

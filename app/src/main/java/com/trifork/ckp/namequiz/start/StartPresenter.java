@@ -24,13 +24,17 @@ public class StartPresenter extends MvpBasePresenter<StartContract.StartView> im
         repository.getDepartments(new Repository.LoadDepartmentsCallback() {
             @Override
             public void onDepartmentsLoaded(List<Department> departments) {
-                getView().setData(departments);
-                getView().showContent();
+                if (isViewAttached()) {
+                    getView().setData(departments);
+                    getView().showContent();
+                }
             }
 
             @Override
             public void onFailure(String errorMessage) {
-                getView().showError(null, false);
+                if (isViewAttached()) {
+                    getView().showError(null, false);
+                }
             }
         });
     }

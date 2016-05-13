@@ -1,9 +1,11 @@
 package com.trifork.ckp.namequiz.quiz;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,13 +27,19 @@ import flow.Flow;
 
 public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizPresenter> implements QuizView, PagerActions {
 
+    private static final String TAG = QuizLayout.class.getSimpleName();
+
+    private Quiz quiz;
+
     private RelativeLayout contentView;
     private TextView errorView;
     private ProgressBar loadingView;
     private ViewPager questionPager;
+    private QuestionAdapter questionAdapter;
 
     public QuizLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setRetainInstance(true);
     }
 
     @NonNull
@@ -62,7 +70,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
 
     @Override
     public void onNewViewStateInstance() {
-        loadData(false);
+        loadData(true);
     }
 
     @Override
@@ -70,6 +78,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
         loadingView.setVisibility(VISIBLE);
         errorView.setVisibility(GONE);
         contentView.setVisibility(GONE);
+        castedViewState().setStateShowLoading(pullToRefresh);
     }
 
     @Override
@@ -77,6 +86,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
         loadingView.setVisibility(GONE);
         errorView.setVisibility(GONE);
         contentView.setVisibility(VISIBLE);
+        castedViewState().setStateShowContent(this.quiz);
     }
 
     @Override
@@ -84,10 +94,16 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
         loadingView.setVisibility(GONE);
         errorView.setVisibility(VISIBLE);
         contentView.setVisibility(GONE);
+        castedViewState().setStateShowError(e, pullToRefresh);
+    }
+
+    private RetainingLceViewState<Quiz, QuizView> castedViewState() {
+        return (RetainingLceViewState<Quiz, QuizView>)viewState;
     }
 
     @Override
-    public void setData(Quiz quiz) {
+    public void setData(Quiz nameQuiz) {
+        this.quiz = nameQuiz;
 
         List<QuestionLayout> questionLayouts = new ArrayList<>();
         for (Question question : quiz.getQuestions()) {
@@ -96,7 +112,8 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
             );
         }
 
-        questionPager.setAdapter(new QuestionAdapter(questionLayouts));
+        questionAdapter = new QuestionAdapter(questionLayouts);
+        questionPager.setAdapter(questionAdapter);
     }
 
     @Override

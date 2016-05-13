@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FakeNames {
+public class FictionalPersonNames {
     private static final String MALE_FILE_NAME = "male_names.json";
     private static final String FEMALE_FILE_NAME = "female_names.json";
 
     private final Gender gender;
 
-    public FakeNames(Gender gender) {
+    public FictionalPersonNames(Gender gender) {
         this.gender = gender;
     }
 

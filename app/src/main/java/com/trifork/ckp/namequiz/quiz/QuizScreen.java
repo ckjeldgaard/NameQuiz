@@ -2,6 +2,7 @@ package com.trifork.ckp.namequiz.quiz;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.trifork.ckp.namequiz.model.Department;
 

@@ -39,7 +39,6 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
     private Button buttonOption1, buttonOption2, buttonOption3, buttonOption4, buttonNext;
 
     protected View inflateLayout(Context context) {
-        Log.d(TAG, "inflateLayout() called with: " + "context = [" + context + "]");
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rootView = layoutInflater.inflate(R.layout.question_view, this);
 

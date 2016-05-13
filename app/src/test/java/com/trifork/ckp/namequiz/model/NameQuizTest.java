@@ -34,4 +34,12 @@ public class NameQuizTest {
         List<Question> questions = new NameQuiz(persons).getQuestions();
         assertEquals(10, questions.size());
     }
+
+    @Test
+    public void testGetQuestions_producesQuizWithSmallDepartment() throws Exception {
+        List<Person> smallDepartment = new ArrayList<>(1);
+        smallDepartment.add(persons.get(0));
+        List<Question> questions = new NameQuiz(smallDepartment).getQuestions();
+        assertEquals(smallDepartment.size(), questions.size());
+    }
 }

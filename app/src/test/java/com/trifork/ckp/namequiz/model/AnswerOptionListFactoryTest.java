@@ -17,7 +17,7 @@ public class AnswerOptionListFactoryTest {
     private List<Person> persons;
 
     @Mock
-    private FakeNames fakeNames;
+    private FictionalPersonNames fictionalPersonNames;
 
     @Before
     public void setUp() throws Exception {
@@ -27,13 +27,13 @@ public class AnswerOptionListFactoryTest {
 
     @Test
     public void testAnswerOptionListContainsFourOptions() throws Exception {
-        AbstractAnswerOptionListFactory factory = new AnswerOptionListFactory(persons.get(0), persons, fakeNames);
+        AbstractAnswerOptionListFactory factory = new AnswerOptionListFactory(persons.get(0), persons, fictionalPersonNames);
         assertEquals(4, factory.makeAnswerOptionList().size());
     }
 
     @Test
     public void testAnswerOptionListContainsNoDuplicates() throws Exception {
-        List<AnswerOption> optionList = new AnswerOptionListFactory(persons.get(0), persons, fakeNames).makeAnswerOptionList();
+        List<AnswerOption> optionList = new AnswerOptionListFactory(persons.get(0), persons, fictionalPersonNames).makeAnswerOptionList();
 
         boolean duplicates = false;
         for (int j = 0; j < optionList.size(); j++)
@@ -48,14 +48,14 @@ public class AnswerOptionListFactoryTest {
     public void testShortPersonsListGeneratesListWithFourNames() throws Exception {
         ArrayList<Person> shortList = new ArrayList<>(1);
         shortList.add(persons.get(0));
-        AbstractAnswerOptionListFactory factory = new AnswerOptionListFactory(persons.get(0), shortList, new FakeNames(persons.get(0).gender()));
+        AbstractAnswerOptionListFactory factory = new AnswerOptionListFactory(persons.get(0), shortList, new FictionalPersonNames(persons.get(0).gender()));
         assertEquals(4, factory.makeAnswerOptionList().size());
     }
 
     @Test
     public void testNumberOfFakeNamesMatchesNumberOfMissingPersonsOfSameGender() throws Exception {
         // Arrange:
-        FakeNames names = new FakeNames(persons.get(0).gender());
+        FictionalPersonNames names = new FictionalPersonNames(persons.get(0).gender());
         List<String> fakeNamesList = names.list(100);
         ArrayList<Person> onePersonDepartment = new ArrayList<>(1);
         onePersonDepartment.add(persons.get(0));

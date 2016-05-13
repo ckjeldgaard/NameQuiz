@@ -6,11 +6,11 @@ import java.util.List;
 
 public final class AnswerOptionListFactory extends AbstractAnswerOptionListFactory {
 
-    private final FakeNames fakeNames;
+    private final FictionalPersonNames fictionalPersonNames;
 
-    public AnswerOptionListFactory(Person subjectPerson, List<Person> allPersons, FakeNames fakeNames) {
+    public AnswerOptionListFactory(Person subjectPerson, List<Person> allPersons, FictionalPersonNames fictionalPersonNames) {
         super(subjectPerson, allPersons);
-        this.fakeNames = fakeNames;
+        this.fictionalPersonNames = fictionalPersonNames;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class AnswerOptionListFactory extends AbstractAnswerOptionListFacto
         }
         if (options.size() < (MAXIMUM_NUMBER_OF_ANSWERS_PER_QUESTIONS-1)) {
             options.addAll(
-                    fakeNames.list(MAXIMUM_NUMBER_OF_ANSWERS_PER_QUESTIONS - options.size())
+                    fictionalPersonNames.list(MAXIMUM_NUMBER_OF_ANSWERS_PER_QUESTIONS - options.size())
             );
         }
         Collections.shuffle(options);

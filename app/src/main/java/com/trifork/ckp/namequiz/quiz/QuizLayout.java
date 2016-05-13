@@ -1,11 +1,9 @@
 package com.trifork.ckp.namequiz.quiz;
 
 import android.content.Context;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,7 +30,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     private Quiz quiz;
 
     private RelativeLayout contentView;
-    private TextView errorView;
+    private TextView errorView, questionNumber;
     private ProgressBar loadingView;
     private ViewPager questionPager;
     private QuestionAdapter questionAdapter;
@@ -59,6 +57,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
         errorView = (TextView) findViewById(R.id.errorView);
         loadingView = (ProgressBar) findViewById(R.id.loadingView);
 
+        questionNumber = (TextView) findViewById(R.id.text_question_number);
         questionPager = (ViewPager) findViewById(R.id.question_pager);
     }
 
@@ -114,6 +113,33 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
 
         questionAdapter = new QuestionAdapter(questionLayouts);
         questionPager.setAdapter(questionAdapter);
+        questionPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setQuestionNumberText(position + 1);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        setQuestionNumberText(questionPager.getCurrentItem() + 1);
+    }
+
+    private void setQuestionNumberText(int no) {
+        questionNumber.setText(
+                String.format(
+                        getResources().getString(R.string.text_question_number),
+                        no,
+                        questionAdapter.getCount()
+                )
+        );
     }
 
     @Override

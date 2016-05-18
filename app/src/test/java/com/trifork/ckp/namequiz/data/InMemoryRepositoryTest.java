@@ -83,8 +83,11 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getPersonsBelongingToDepartment_requestsPersonsFromServiceApi() throws Exception {
-        repository.produceQuiz(loadQuizCallback, DEPARTMENTS.get(0));
-        verify(serviceApi).getPersonsBelongingToDepartment(any(ServiceApi.ServiceCallback.class), eq(DEPARTMENTS.get(0)));
+        Department department = new Department(1, "Copenhagen");
+
+        repository.produceQuiz(loadQuizCallback, department.getId());
+        verify(serviceApi).getAllDepartments(any(ServiceApi.ServiceCallback.class));
+        //verify(serviceApi).getPersonsBelongingToDepartment(any(ServiceApi.ServiceCallback.class), eq(department));
     }
 
     /**

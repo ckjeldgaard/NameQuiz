@@ -11,12 +11,10 @@ import org.mockito.MockitoAnnotations;
 
 public class QuizPresenterTest {
 
-    private static final Department DEPARTMENT = new FakeDepartmentsFactory().produceDepartment("department.json");
-
     private QuizPresenter quizPresenter;
 
     @Mock
-    private QuizView quizView;
+    private QuizContract.QuizView quizView;
 
     @Mock
     private Repository repository;
@@ -30,6 +28,6 @@ public class QuizPresenterTest {
 
     @Test
     public void testLoadPersons() throws Exception {
-        this.quizPresenter.loadPersons(DEPARTMENT);
+        this.quizPresenter.loadPersons(1);
     }
 }

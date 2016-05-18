@@ -8,14 +8,14 @@ import com.trifork.ckp.namequiz.model.Department;
 
 public final class QuizScreen implements Parcelable {
 
-    final Department department;
+    final long departmentId;
 
-    public QuizScreen(Department department) {
-        this.department = department;
+    public QuizScreen(long departmentId) {
+        this.departmentId = departmentId;
     }
 
     protected QuizScreen(Parcel in) {
-        department = in.readParcelable(Department.class.getClassLoader());
+        departmentId = in.readLong();
     }
 
     public static final Creator<QuizScreen> CREATOR = new Creator<QuizScreen>() {
@@ -37,6 +37,6 @@ public final class QuizScreen implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(department, flags);
+        dest.writeLong(departmentId);
     }
 }

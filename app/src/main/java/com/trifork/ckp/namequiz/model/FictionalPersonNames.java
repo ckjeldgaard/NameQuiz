@@ -3,6 +3,7 @@ package com.trifork.ckp.namequiz.model;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.trifork.ckp.namequiz.util.JsonFile;
 
 
 import java.io.BufferedReader;
@@ -28,7 +29,7 @@ public class FictionalPersonNames {
         String fileName = (this.gender == Gender.FEMALE) ? FEMALE_FILE_NAME : MALE_FILE_NAME;
         String jsonContents;
         try {
-            jsonContents = openFile(fileName);
+            jsonContents = new JsonFile(fileName).open();
         } catch (IOException e) {
             throw new IllegalArgumentException(String.format("Couldn't parse file %s as Json", fileName), e);
         }
@@ -46,30 +47,5 @@ public class FictionalPersonNames {
         }
 
         return names;
-    }
-
-    private String openFile(String fileName) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        BufferedReader reader = null;
-        try {
-            InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
-            reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-        } catch (IOException e) {
-            throw new IOException(String.format("The file %s doesn't exist", fileName), e);
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    throw new IOException(String.format("Can't close the BufferedReader for file %s", fileName), e);
-                }
-            }
-        }
-        return sb.toString();
     }
 }

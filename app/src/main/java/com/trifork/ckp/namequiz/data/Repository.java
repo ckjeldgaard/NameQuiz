@@ -8,23 +8,23 @@ import com.trifork.ckp.namequiz.model.Quiz;
 import java.util.List;
 
 /**
- * Main entry point for accessing departments data.
+ * Main entry point for accessing data.
  */
 public interface Repository {
 
     interface LoadDepartmentsCallback {
         void onDepartmentsLoaded(List<Department> departments);
-        void onFailure(String errorMessage);
+        void onFailure(Exception ex);
     }
 
     interface LoadQuizCallback {
         void onQuizLoaded(Quiz quiz);
-        void onFailure(String errorMessage);
+        void onFailure(Exception ex);
     }
 
     void getDepartments(@NonNull LoadDepartmentsCallback callback);
 
-    void produceQuiz(@NonNull final LoadQuizCallback callback, @NonNull Department department);
+    void produceQuiz(@NonNull final LoadQuizCallback callback, @NonNull long departmentId);
 
     void refreshData();
 }

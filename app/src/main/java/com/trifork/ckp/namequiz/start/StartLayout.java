@@ -14,7 +14,8 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
-import com.trifork.ckp.namequiz.Injection;
+import com.trifork.ckp.namequiz.MainActivity;
+import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.quiz.QuizScreen;
@@ -40,7 +41,7 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.
     public StartLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.presenter = new StartPresenter(
-                new Injection().provideRepository(),
+                ((NameQuizApplication)context.getApplicationContext()).getInjection().provideRepository(),
                 this
         );
         this.departments = new ArrayList<>(0);
@@ -96,6 +97,7 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.
     @Override
     public void showError(Throwable throwable, boolean pullToRefresh) {
         loadingView.setVisibility(GONE);
+        errorView.setText(throwable.getMessage());
         errorView.setVisibility(VISIBLE);
         contentView.setVisibility(GONE);
     }
@@ -130,7 +132,7 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.
     public void showStartQuiz(Department department) {
         Flow.get(startButton).set(
                 new QuizScreen(
-                        department
+                        department.getId()
                 )
         );
     }

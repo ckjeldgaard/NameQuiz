@@ -7,4 +7,7 @@
     <string name="common_error_text">An error has occurred.</string>
     <string name="text_question_number">Question %1$s of %2$s</string>
     <string name="text_question">Who’s this?</string>
+    <string name="error_no_internet_connection">No internet activity detected.</string>
+    <string name="error_no_departments">No departments found.</string>
+    <string name="error_no_persons">No persons found for department %1$s.</string>
 </resources>

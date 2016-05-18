@@ -47,7 +47,10 @@ android {
             resources.srcDirs = ['src/main/resources', 'src/test/resources/', 'src/main/resources/']
             res.srcDirs = ['src/main/res', 'src/test/res']
         }
-        mock { resources.srcDirs = ['src/mock/resources', 'src/mock/resources/'] }
+        mock {
+            resources.srcDirs = ['src/mock/resources', 'src/mock/resources/']
+            assets.srcDirs = ['src/mock/assets', 'src/mock/assets/']
+        }
     }
 }
 

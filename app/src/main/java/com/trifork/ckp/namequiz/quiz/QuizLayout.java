@@ -11,7 +11,8 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
-import com.trifork.ckp.namequiz.Injection;
+import com.trifork.ckp.namequiz.MainActivity;
+import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.model.Quiz;
@@ -23,7 +24,7 @@ import java.util.List;
 
 import flow.Flow;
 
-public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizPresenter> implements QuizView, PagerActions {
+public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.QuizView, QuizPresenter> implements QuizContract.QuizView, PagerActions {
 
     private static final String TAG = QuizLayout.class.getSimpleName();
 
@@ -44,7 +45,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     @Override
     public QuizPresenter createPresenter() {
         return new QuizPresenter(
-                new Injection().provideRepository(),
+                ((NameQuizApplication)getContext().getApplicationContext()).getInjection().provideRepository(),
                 this
         );
     }
@@ -63,8 +64,8 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
 
     @NonNull
     @Override
-    public ViewState<QuizView> createViewState() {
-        return new RetainingLceViewState<Quiz, QuizView>();
+    public ViewState<QuizContract.QuizView> createViewState() {
+        return new RetainingLceViewState<Quiz, QuizContract.QuizView>();
     }
 
     @Override
@@ -96,8 +97,8 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
         castedViewState().setStateShowError(e, pullToRefresh);
     }
 
-    private RetainingLceViewState<Quiz, QuizView> castedViewState() {
-        return (RetainingLceViewState<Quiz, QuizView>)viewState;
+    private RetainingLceViewState<Quiz, QuizContract.QuizView> castedViewState() {
+        return (RetainingLceViewState<Quiz, QuizContract.QuizView>)viewState;
     }
 
     @Override
@@ -145,7 +146,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizView, QuizP
     @Override
     public void loadData(boolean pullToRefresh) {
         QuizScreen screen = Flow.getKey(this);
-        this.presenter.loadPersons(screen.department);
+        this.presenter.loadPersons(screen.departmentId);
     }
 
     @Override

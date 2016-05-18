@@ -4,14 +4,14 @@ import android.content.Context;
 
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.trifork.ckp.namequiz.Injection;
+import com.trifork.ckp.namequiz.MainActivity;
+import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.AnswerOption;
 import com.trifork.ckp.namequiz.model.Question;
@@ -31,7 +31,7 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
         super(context);
         this.question = question;
         this.pagerActions = pagerActions;
-        this.presenter = new QuestionPresenter(this, new Injection().providePersonImage(context));
+        this.presenter = new QuestionPresenter(this, ((NameQuizApplication)getContext().getApplicationContext()).getInjection().providePersonImage(context));
         this.inflateLayout(context);
     }
 

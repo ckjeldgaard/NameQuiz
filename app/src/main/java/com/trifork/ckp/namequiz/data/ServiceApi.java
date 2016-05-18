@@ -13,7 +13,7 @@ public interface ServiceApi {
 
     interface ServiceCallback<T> {
         void onLoaded(T data);
-        void onError(String errorMessage);
+        void onError(Exception ex);
     }
 
     void getAllDepartments(ServiceCallback<List<Department>> callback);

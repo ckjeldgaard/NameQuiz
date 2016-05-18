@@ -1,8 +1,10 @@
 package com.trifork.ckp.namequiz.fakes;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.trifork.ckp.namequiz.model.Gender;
 import com.trifork.ckp.namequiz.model.Person;
+import com.trifork.ckp.namequiz.util.JsonFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +24,9 @@ public final class FakePersonsFactory {
         List<Person> persons = new ArrayList<>();
         JsonElement json;
         try {
-            json = new JsonFile(fileName).open();
+            json = new JsonParser().parse(
+                    new JsonFile(fileName).open()
+            );
         } catch (IOException e) {
             throw new IllegalArgumentException(String.format("Couldn't parse file %s as Json", fileName), e);
         }

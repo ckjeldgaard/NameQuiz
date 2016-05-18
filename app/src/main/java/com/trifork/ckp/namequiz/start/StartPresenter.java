@@ -31,9 +31,9 @@ public class StartPresenter extends MvpBasePresenter<StartContract.StartView> im
             }
 
             @Override
-            public void onFailure(String errorMessage) {
+            public void onFailure(Exception ex) {
                 if (isViewAttached()) {
-                    getView().showError(null, false);
+                    getView().showError(ex, false);
                 }
             }
         });

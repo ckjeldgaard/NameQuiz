@@ -10,10 +10,16 @@ import com.trifork.ckp.namequiz.util.PersonImage;
 
 public final class Injection {
 
-    public Repository provideRepository() {
-        return new InMemoryRepository(
+    private final Repository repository;
+
+    public Injection(Context ctx) {
+        this.repository = new InMemoryRepository(
                 new FakeServiceApi()
         );
+    }
+
+    public Repository provideRepository() {
+        return this.repository;
     }
 
     public PersonImage providePersonImage(Context ctx) {

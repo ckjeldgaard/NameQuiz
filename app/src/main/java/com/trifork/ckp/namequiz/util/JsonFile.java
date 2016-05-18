@@ -1,14 +1,12 @@
-package com.trifork.ckp.namequiz.fakes;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+package com.trifork.ckp.namequiz.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public final class JsonFile implements File {
+public class JsonFile implements File {
+    private static final String ENCODING = "UTF-8";
     private final String fileName;
 
     public JsonFile(String fileName) {
@@ -16,12 +14,12 @@ public final class JsonFile implements File {
     }
 
     @Override
-    public JsonElement open() throws IOException {
+    public String open() throws IOException {
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = null;
         try {
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
-            reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            reader = new BufferedReader(new InputStreamReader(inputStream, ENCODING));
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -38,6 +36,6 @@ public final class JsonFile implements File {
                 }
             }
         }
-        return new JsonParser().parse(sb.toString());
+        return sb.toString();
     }
 }

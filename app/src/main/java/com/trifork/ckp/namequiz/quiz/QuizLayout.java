@@ -15,21 +15,18 @@ import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
-import com.trifork.ckp.namequiz.model.Question;
-import com.trifork.ckp.namequiz.model.Quiz;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
 import com.trifork.ckp.namequiz.quiz.question.QuestionLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import flow.Flow;
 
-public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.QuizView, QuizPresenter> implements QuizContract.QuizView, PagerActions {
+public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.QuizView, QuizPresenter> implements QuizContract.QuizView {
 
     private static final String TAG = QuizLayout.class.getSimpleName();
 
-    private Quiz quiz;
+    private List<QuestionLayout> questionLayouts;
 
     private RelativeLayout contentView;
     private TextView errorView, questionNumber;
@@ -68,7 +65,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     @NonNull
     @Override
     public ViewState<QuizContract.QuizView> createViewState() {
-        return new RetainingLceViewState<Quiz, QuizContract.QuizView>();
+        return new RetainingLceViewState<List<QuestionLayout>, QuizContract.QuizView>();
     }
 
     @Override
@@ -89,7 +86,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
         loadingView.setVisibility(GONE);
         errorView.setVisibility(GONE);
         contentView.setVisibility(VISIBLE);
-        castedViewState().setStateShowContent(this.quiz);
+        castedViewState().setStateShowContent(questionLayouts);
     }
 
     @Override
@@ -100,21 +97,13 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
         castedViewState().setStateShowError(e, pullToRefresh);
     }
 
-    private RetainingLceViewState<Quiz, QuizContract.QuizView> castedViewState() {
-        return (RetainingLceViewState<Quiz, QuizContract.QuizView>)viewState;
+
+    private RetainingLceViewState<List<QuestionLayout>, QuizContract.QuizView> castedViewState() {
+        return (RetainingLceViewState<List<QuestionLayout>, QuizContract.QuizView>)viewState;
     }
 
     @Override
-    public void setData(Quiz nameQuiz) {
-        this.quiz = nameQuiz;
-
-        List<QuestionLayout> questionLayouts = new ArrayList<>();
-        for (Question question : quiz.getQuestions()) {
-            questionLayouts.add(
-                    new QuestionLayout(getContext(), question, this)
-            );
-        }
-
+    public void setData(List<QuestionLayout> questionLayouts) {
         questionAdapter = new QuestionAdapter(questionLayouts);
         questionPager.setAdapter(questionAdapter);
         questionPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -138,17 +127,9 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
         buttonNext.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonNext.setEnabled(false);
-                questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);
-                if (lastItem()) {
-                    buttonNext.setText(getResources().getString(R.string.quiz_screen_button_text_get_results));
-                }
+                presenter.gotoNext();
             }
         });
-    }
-
-    private boolean lastItem() {
-        return questionPager.getCurrentItem() == (questionAdapter.getCount()-1);
     }
 
     private void setQuestionNumberText(int no) {
@@ -168,7 +149,24 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     }
 
     @Override
-    public void answerSelected() {
-        buttonNext.setEnabled(true);
+    public void setNextButtonEnabled(boolean enabled) {
+        buttonNext.setEnabled(enabled);
+    }
+
+    @Override
+    public void setNextButtonAction() {
+        questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);
+        if (lastItem()) {
+            buttonNext.setText(getResources().getString(R.string.quiz_screen_button_text_get_results));
+        }
+    }
+
+    @Override
+    public Context context() {
+        return getContext();
+    }
+
+    private boolean lastItem() {
+        return questionPager.getCurrentItem() == (questionAdapter.getCount()-1);
     }
 }

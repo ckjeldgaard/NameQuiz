@@ -6,11 +6,17 @@ import android.util.Log;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.trifork.ckp.namequiz.data.Repository;
 import com.trifork.ckp.namequiz.model.Department;
+import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.model.Quiz;
+import com.trifork.ckp.namequiz.quiz.question.QuestionLayout;
 
-public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView> implements QuizContract.UserActionsListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView> implements QuizContract.UserActionsListener, PagerActions {
 
     private final Repository repository;
+    private Quiz quiz;
 
     public QuizPresenter(@NonNull Repository repository, QuizContract.QuizView view) {
         this.repository = repository;
@@ -23,10 +29,12 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
 
         this.repository.produceQuiz(new Repository.LoadQuizCallback() {
             @Override
-            public void onQuizLoaded(Quiz quiz) {
+            public void onQuizLoaded(Quiz nameQuiz) {
                 if (isViewAttached()) {
                     Log.d("QuizPresenter", "onPersonsLoaded() called with: " + "quiz = [" + quiz + "]");
-                    getView().setData(quiz);
+
+                    quiz = nameQuiz;
+                    getView().setData(generateQuestionLayouts());
                     getView().showContent();
                 }
             }
@@ -39,5 +47,26 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
                 }
             }
         }, departmentId);
+    }
+
+    private List<QuestionLayout> generateQuestionLayouts() {
+        List<QuestionLayout> questionLayouts = new ArrayList<>();
+        for (Question question : quiz.getQuestions()) {
+            questionLayouts.add(
+                    new QuestionLayout(getView().context(), question, this)
+            );
+        }
+        return questionLayouts;
+    }
+
+    @Override
+    public void gotoNext() {
+        getView().setNextButtonEnabled(false);
+        getView().setNextButtonAction();
+    }
+
+    @Override
+    public void answerSelected() {
+        getView().setNextButtonEnabled(true);
     }
 }

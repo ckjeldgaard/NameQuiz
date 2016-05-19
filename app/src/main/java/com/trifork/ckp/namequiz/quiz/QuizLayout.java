@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,7 +13,6 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
-import com.trifork.ckp.namequiz.MainActivity;
 import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.Question;
@@ -35,6 +36,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     private ProgressBar loadingView;
     private ViewPager questionPager;
     private QuestionAdapter questionAdapter;
+    private Button buttonNext;
 
     public QuizLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -60,6 +62,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
 
         questionNumber = (TextView) findViewById(R.id.text_question_number);
         questionPager = (ViewPager) findViewById(R.id.question_pager);
+        buttonNext = (Button) findViewById(R.id.button_next);
     }
 
     @NonNull
@@ -131,6 +134,21 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
             }
         });
         setQuestionNumberText(questionPager.getCurrentItem() + 1);
+
+        buttonNext.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonNext.setEnabled(false);
+                questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);
+                if (lastItem()) {
+                    buttonNext.setText(getResources().getString(R.string.quiz_screen_button_text_get_results));
+                }
+            }
+        });
+    }
+
+    private boolean lastItem() {
+        return questionPager.getCurrentItem() == (questionAdapter.getCount()-1);
     }
 
     private void setQuestionNumberText(int no) {
@@ -150,7 +168,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     }
 
     @Override
-    public void moveNext() {
-        this.questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);
+    public void answerSelected() {
+        buttonNext.setEnabled(true);
     }
 }

@@ -31,13 +31,7 @@ public final class QuestionPresenter extends MvpBasePresenter<QuestionContract.Q
     @Override
     public void selectPerson(int answerOptionIndex) {
         Log.d(TAG, "Selecting person at index " + answerOptionIndex + " = " + getView().getQuestion().answerOptions().get(answerOptionIndex).displayOption());
-        getView().enableNextButton();
         getView().setSelected(answerOptionIndex);
-    }
-
-    @Override
-    public void nextQuestion() {
-        getView().swipeToNextPage();
     }
 
 }

@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.trifork.ckp.namequiz.MainActivity;
 import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.AnswerOption;
@@ -36,7 +35,7 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
     }
 
     private ImageView personImage;
-    private Button buttonOption1, buttonOption2, buttonOption3, buttonOption4, buttonNext;
+    private Button buttonOption1, buttonOption2, buttonOption3, buttonOption4;
 
     protected View inflateLayout(Context context) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -47,13 +46,6 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
         this.buttonOption2 = (Button) rootView.findViewById(R.id.option_2);
         this.buttonOption3 = (Button) rootView.findViewById(R.id.option_3);
         this.buttonOption4 = (Button) rootView.findViewById(R.id.option_4);
-        this.buttonNext = (Button) rootView.findViewById(R.id.question_next_button);
-        buttonNext.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.nextQuestion();
-            }
-        });
 
         buttonOption1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,15 +131,7 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
                 buttonOption4.setBackground(defaultState);
                 break;
         }
-    }
 
-    @Override
-    public void enableNextButton() {
-        buttonNext.setEnabled(true);
-    }
-
-    @Override
-    public void swipeToNextPage() {
-        pagerActions.moveNext();
+        pagerActions.answerSelected();
     }
 }

@@ -16,13 +16,10 @@ public interface QuestionContract {
         ImageView getPersonImageView();
         void setNames(List<AnswerOption> answerOptions);
         void setSelected(int index);
-        void enableNextButton();
-        void swipeToNextPage();
     }
 
     interface UserActionsListener {
         void loadQuestion(Context context);
         void selectPerson(int answerOptionIndex);
-        void nextQuestion();
     }
 }

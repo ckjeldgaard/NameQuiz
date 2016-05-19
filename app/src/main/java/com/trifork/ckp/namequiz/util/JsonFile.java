@@ -19,11 +19,15 @@ public class JsonFile implements File {
         BufferedReader reader = null;
         try {
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
-            reader = new BufferedReader(new InputStreamReader(inputStream, ENCODING));
+            if (inputStream != null) {
+                reader = new BufferedReader(new InputStreamReader(inputStream, ENCODING));
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+            } else {
+                throw new IOException(String.format("The resource %s can not be found", fileName));
             }
         } catch (IOException e) {
             throw new IOException(String.format("The file %s doesn't exist", fileName), e);

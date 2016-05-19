@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -53,7 +54,7 @@ public class InMemoryRepositoryTest {
     public void getDepartments_repositoryCachesAfterFirstApiCall() {
         // Given a setup Captor to capture callbacks
         // When two calls are issued to the departments repository
-        twoLoadCallsToRepository(loadDepartmentsCallback);
+        twoLoadCallsToRepository(repository, loadDepartmentsCallback);
 
         // Then departments where only requested once from Service API
         verify(serviceApi).getAllDepartments(any(ServiceApi.ServiceCallback.class));
@@ -61,8 +62,10 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void invalidateCache_DoesNotCallTheServiceApi() {
+        Repository repo = new InMemoryRepository(serviceApi);
+
         // Given a setup Captor to capture callbacks
-        twoLoadCallsToRepository(loadDepartmentsCallback);
+        twoLoadCallsToRepository(repo, loadDepartmentsCallback);
 
         // When data refresh is requested
         repository.refreshData();
@@ -93,9 +96,9 @@ public class InMemoryRepositoryTest {
     /**
      * Convenience method that issues two calls to the departments repository
      */
-    private void twoLoadCallsToRepository(Repository.LoadDepartmentsCallback callback) {
+    private void twoLoadCallsToRepository(Repository repo, Repository.LoadDepartmentsCallback callback) {
         // When departments are requested from repository
-        repository.getDepartments(callback); // First call to API
+        repo.getDepartments(callback); // First call to API
 
         // Use the Mockito Captor to capture the callback
         verify(serviceApi).getAllDepartments(serviceCallbackArgumentCaptor.capture());
@@ -103,6 +106,6 @@ public class InMemoryRepositoryTest {
         // Trigger callback so departments are cached
         serviceCallbackArgumentCaptor.getValue().onLoaded(DEPARTMENTS);
 
-        repository.getDepartments(callback); // Second call to API
+        repo.getDepartments(callback); // Second call to API
     }
 }

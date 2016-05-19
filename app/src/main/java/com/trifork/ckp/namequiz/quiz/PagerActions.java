@@ -1,5 +1,5 @@
 package com.trifork.ckp.namequiz.quiz;
 
 public interface PagerActions {
-    void moveNext();
+    void answerSelected();
 }

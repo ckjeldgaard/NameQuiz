@@ -15,9 +15,12 @@ import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
+import com.trifork.ckp.namequiz.model.Question;
+import com.trifork.ckp.namequiz.model.Quiz;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
 import com.trifork.ckp.namequiz.quiz.question.QuestionLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import flow.Flow;
@@ -26,7 +29,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
 
     private static final String TAG = QuizLayout.class.getSimpleName();
 
-    private List<QuestionLayout> questionLayouts;
+    private Quiz quiz;
 
     private RelativeLayout contentView;
     private TextView errorView, questionNumber;
@@ -65,7 +68,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     @NonNull
     @Override
     public ViewState<QuizContract.QuizView> createViewState() {
-        return new RetainingLceViewState<List<QuestionLayout>, QuizContract.QuizView>();
+        return new RetainingLceViewState<Quiz, QuizContract.QuizView>();
     }
 
     @Override
@@ -86,7 +89,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
         loadingView.setVisibility(GONE);
         errorView.setVisibility(GONE);
         contentView.setVisibility(VISIBLE);
-        castedViewState().setStateShowContent(questionLayouts);
+        castedViewState().setStateShowContent(quiz);
     }
 
     @Override
@@ -97,14 +100,11 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
         castedViewState().setStateShowError(e, pullToRefresh);
     }
 
-
-    private RetainingLceViewState<List<QuestionLayout>, QuizContract.QuizView> castedViewState() {
-        return (RetainingLceViewState<List<QuestionLayout>, QuizContract.QuizView>)viewState;
-    }
-
     @Override
-    public void setData(List<QuestionLayout> questionLayouts) {
-        questionAdapter = new QuestionAdapter(questionLayouts);
+    public void setData(Quiz nameQuiz) {
+        this.quiz = nameQuiz;
+
+        questionAdapter = new QuestionAdapter(generateQuestionLayouts(nameQuiz));
         questionPager.setAdapter(questionAdapter);
         questionPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -130,6 +130,22 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
                 presenter.gotoNext();
             }
         });
+    }
+
+
+    private List<QuestionLayout> generateQuestionLayouts(Quiz nameQuiz) {
+        List<QuestionLayout> questionLayouts = new ArrayList<>();
+        for (Question question : nameQuiz.getQuestions()) {
+            questionLayouts.add(
+                    new QuestionLayout(getContext(), question, presenter)
+            );
+        }
+        return questionLayouts;
+    }
+
+
+    private RetainingLceViewState<Quiz, QuizContract.QuizView> castedViewState() {
+        return (RetainingLceViewState<Quiz, QuizContract.QuizView>)viewState;
     }
 
     private void setQuestionNumberText(int no) {
@@ -159,11 +175,6 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
         if (lastItem()) {
             buttonNext.setText(getResources().getString(R.string.quiz_screen_button_text_get_results));
         }
-    }
-
-    @Override
-    public Context context() {
-        return getContext();
     }
 
     private boolean lastItem() {

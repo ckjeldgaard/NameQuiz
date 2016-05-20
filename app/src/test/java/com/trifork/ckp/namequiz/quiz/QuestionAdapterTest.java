@@ -4,11 +4,6 @@ import android.test.AndroidTestCase;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trifork.ckp.namequiz.fakes.FakeAnswerOptionsFactory;
-import com.trifork.ckp.namequiz.fakes.FakePersonsFactory;
-import com.trifork.ckp.namequiz.model.AnswerOption;
-import com.trifork.ckp.namequiz.model.Person;
-import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
 import com.trifork.ckp.namequiz.quiz.question.QuestionLayout;
 
@@ -16,7 +11,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;

@@ -1,4 +1,4 @@
-package com.trifork.ckp.namequiz.fakes;
+package com.trifork.ckp.namequiz.model.stubs;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public final class FakePersonsFactory {
+public final class StubbedPersonsFactory {
 
-    public FakePersonsFactory() {
+    public StubbedPersonsFactory() {
     }
 
     public Person producePerson(String fileName) {
@@ -37,7 +37,7 @@ public final class FakePersonsFactory {
                     new Person(
                             person.getValue().getAsJsonObject().get("firstName").getAsString(),
                             person.getValue().getAsJsonObject().get("fullName").getAsString(),
-                            new FakeDepartmentsFactory().produceDepartment("department.json"),
+                            new StubbedDepartmentsFactory().produceDepartment("stubbed_department.json"),
                             person.getValue().getAsJsonObject().get("image").getAsString(),
                             gender.equals("male") ? Gender.MALE : Gender.FEMALE
                     )

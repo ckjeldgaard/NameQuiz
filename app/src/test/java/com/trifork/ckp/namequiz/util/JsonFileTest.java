@@ -15,7 +15,7 @@ public class JsonFileTest {
 
     @Test
     public void testOpenExistingFile() throws Exception {
-        String personFileContents = new JsonFile("person.json").open();
+        String personFileContents = new JsonFile("stubbed_person.json").open();
         assertNotNull(personFileContents);
     }
 }

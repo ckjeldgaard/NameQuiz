@@ -1,6 +1,6 @@
 package com.trifork.ckp.namequiz.model;
 
-import com.trifork.ckp.namequiz.fakes.FakePersonsFactory;
+import com.trifork.ckp.namequiz.model.stubs.StubbedPersonsFactory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class NameQuizTest {
 
     @Before
     public void setUp() throws Exception {
-        persons = new FakePersonsFactory().producePersons("persons.json");
+        persons = new StubbedPersonsFactory().producePersons("stubbed_persons.json");
     }
 
     @Test(expected = IllegalArgumentException.class)

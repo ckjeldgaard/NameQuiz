@@ -1,17 +1,12 @@
 package com.trifork.ckp.namequiz.quiz;
 
-import android.content.Context;
-
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.trifork.ckp.namequiz.quiz.question.QuestionLayout;
-
-import java.util.List;
+import com.trifork.ckp.namequiz.model.Quiz;
 
 public interface QuizContract {
-    interface QuizView extends MvpLceView<List<QuestionLayout>> {
+    interface QuizView extends MvpLceView<Quiz> {
         void setNextButtonEnabled(boolean enabled);
         void setNextButtonAction();
-        Context context();
     }
 
     interface UserActionsListener {

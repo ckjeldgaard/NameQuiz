@@ -1,7 +1,7 @@
 package com.trifork.ckp.namequiz.model;
 
-import com.trifork.ckp.namequiz.fakes.FakeAnswerOptionsFactory;
-import com.trifork.ckp.namequiz.fakes.FakePersonsFactory;
+import com.trifork.ckp.namequiz.model.stubs.StubbedAnswerOptionsFactory;
+import com.trifork.ckp.namequiz.model.stubs.StubbedPersonsFactory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +18,8 @@ public class QuestionTest {
 
     @Before
     public void setUp() throws Exception {
-        person = new FakePersonsFactory().producePerson("person.json");
-        answerOptions = new FakeAnswerOptionsFactory().produceAnswerOptions("answer_options.json");
+        person = new StubbedPersonsFactory().producePerson("stubbed_person.json");
+        answerOptions = new StubbedAnswerOptionsFactory().produceAnswerOptions("stubbed_answer_options.json");
         question = new Question(person, answerOptions);
     }
 

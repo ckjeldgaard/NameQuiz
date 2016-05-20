@@ -1,7 +1,7 @@
 package com.trifork.ckp.namequiz.model;
 
-import com.trifork.ckp.namequiz.fakes.FakeDepartmentsFactory;
-import com.trifork.ckp.namequiz.fakes.FakePersonsFactory;
+import com.trifork.ckp.namequiz.model.stubs.StubbedDepartmentsFactory;
+import com.trifork.ckp.namequiz.model.stubs.StubbedPersonsFactory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,8 +15,8 @@ public class PersonTest {
 
     @Before
     public void setUp() throws Exception {
-        department = new FakeDepartmentsFactory().produceDepartment("department.json");
-        person = new FakePersonsFactory().producePerson("person.json");
+        department = new StubbedDepartmentsFactory().produceDepartment("stubbed_department.json");
+        person = new StubbedPersonsFactory().producePerson("stubbed_person.json");
     }
 
     @Test

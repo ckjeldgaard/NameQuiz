@@ -13,6 +13,9 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Helper class to mock a parcelable class.
+ */
 public class MockParcel {
     public static Parcel obtain() {
         return new MockParcel().getMockedParcel();

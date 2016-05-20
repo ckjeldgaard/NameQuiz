@@ -34,7 +34,7 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
                     Log.d("QuizPresenter", "onPersonsLoaded() called with: " + "quiz = [" + quiz + "]");
 
                     quiz = nameQuiz;
-                    getView().setData(generateQuestionLayouts());
+                    getView().setData(nameQuiz);
                     getView().showContent();
                 }
             }
@@ -47,16 +47,6 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
                 }
             }
         }, departmentId);
-    }
-
-    private List<QuestionLayout> generateQuestionLayouts() {
-        List<QuestionLayout> questionLayouts = new ArrayList<>();
-        for (Question question : quiz.getQuestions()) {
-            questionLayouts.add(
-                    new QuestionLayout(getView().context(), question, this)
-            );
-        }
-        return questionLayouts;
     }
 
     @Override

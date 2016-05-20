@@ -1,4 +1,4 @@
-package com.trifork.ckp.namequiz.fakes;
+package com.trifork.ckp.namequiz.model.stubs;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FakeAnswerOptionsFactory {
+public final class StubbedAnswerOptionsFactory {
 
-    public FakeAnswerOptionsFactory() {
+    public StubbedAnswerOptionsFactory() {
     }
 
     public List<AnswerOption> produceAnswerOptions(String fileName) {

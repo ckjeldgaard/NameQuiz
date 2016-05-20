@@ -10,12 +10,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ImageView
+        android:id="@+id/image_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Result"
-        android:id="@+id/textView"
+        android:src="@mipmap/smiley_happy"
+        android:layout_marginBottom="@dimen/screen_vertical_margin"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        />
+
+    <TextView
+        android:id="@+id/text_result_headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Congratulations"
+        android:textStyle="bold"
+        android:layout_below="@id/image_result"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/screen_vertical_margin"
+        />
+
+    <TextView
+        android:id="@+id/text_result_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You scored 5 out of 10"
+        android:layout_below="@id/text_result_headline"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/screen_vertical_margin"
+        />
+
+    <TextView
+        android:id="@+id/text_result_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You are Pierluigi Martini. A steady enough performer but never in any danger of catching the eye of one of the big teams."
+        android:textAlignment="center"
+        android:layout_below="@id/text_result_score"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/screen_vertical_margin"
+        />
+
+    <ListView
+        android:id="@+id/checklist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/text_result_explanation"
+        android:layout_above="@+id/result_button"
+        android:layout_marginBottom="@dimen/screen_vertical_margin"/>
+
+    <Button
+        android:id="@+id/result_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result_screen_button_text"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/app_btn"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
 </com.trifork.ckp.namequiz.result.ResultLayout>

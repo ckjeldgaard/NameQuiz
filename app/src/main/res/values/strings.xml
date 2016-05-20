@@ -11,4 +11,5 @@
     <string name="error_no_internet_connection">No internet activity detected.</string>
     <string name="error_no_departments">No departments found.</string>
     <string name="error_no_persons">No persons found for department %1$s.</string>
+    <string name="result_screen_button_text">Try again</string>
 </resources>

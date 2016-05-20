@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.trifork.ckp.namequiz.data.Repository;
+import com.trifork.ckp.namequiz.model.Answer;
 import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.model.Quiz;
@@ -16,9 +17,10 @@ import java.util.List;
 public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView> implements QuizContract.UserActionsListener, PagerActions {
 
     private final Repository repository;
-    private Quiz quiz;
+    private List<Answer> answers;
 
     public QuizPresenter(@NonNull Repository repository, QuizContract.QuizView view) {
+        this.answers = new ArrayList<>(10);
         this.repository = repository;
         this.attachView(view);
     }
@@ -31,7 +33,6 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
             @Override
             public void onQuizLoaded(Quiz nameQuiz) {
                 if (isViewAttached()) {
-                    quiz = nameQuiz;
                     getView().setData(nameQuiz);
                     getView().showContent();
                 }
@@ -53,7 +54,13 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
     }
 
     @Override
-    public void answerSelected() {
+    public List<Answer> answers() {
+        return this.answers;
+    }
+
+    @Override
+    public void answerSelected(Answer answer) {
+        answers.add(answer);
         getView().setNextButtonEnabled(true);
     }
 }

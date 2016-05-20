@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
+import com.trifork.ckp.namequiz.model.Answer;
 import com.trifork.ckp.namequiz.model.AnswerOption;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.quiz.PagerActions;
@@ -99,26 +100,32 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
     public void setSelected(int index) {
         Drawable defaultState = ContextCompat.getDrawable(getContext(), R.drawable.question_button_shape);
         Drawable selected = ContextCompat.getDrawable(getContext(), R.drawable.question_button_shape_selected);
+        Answer answer = null;
+
         switch (index) {
             case 0:
+                answer = new Answer(buttonOption1.getText().toString());
                 buttonOption1.setBackground(selected);
                 buttonOption2.setBackground(defaultState);
                 buttonOption3.setBackground(defaultState);
                 buttonOption4.setBackground(defaultState);
                 break;
             case 1:
+                answer = new Answer(buttonOption2.getText().toString());
                 buttonOption1.setBackground(defaultState);
                 buttonOption2.setBackground(selected);
                 buttonOption3.setBackground(defaultState);
                 buttonOption4.setBackground(defaultState);
                 break;
             case 2:
+                answer = new Answer(buttonOption3.getText().toString());
                 buttonOption1.setBackground(defaultState);
                 buttonOption2.setBackground(defaultState);
                 buttonOption3.setBackground(selected);
                 buttonOption4.setBackground(defaultState);
                 break;
             case 3:
+                answer = new Answer(buttonOption4.getText().toString());
                 buttonOption1.setBackground(defaultState);
                 buttonOption2.setBackground(defaultState);
                 buttonOption3.setBackground(defaultState);
@@ -132,6 +139,10 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
                 break;
         }
 
-        pagerActions.answerSelected();
+        if (answer != null) {
+            pagerActions.answerSelected(
+                    answer
+            );
+        }
     }
 }

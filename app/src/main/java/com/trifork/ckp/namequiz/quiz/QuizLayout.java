@@ -16,6 +16,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
+import com.trifork.ckp.namequiz.model.Answer;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.model.Quiz;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;
@@ -174,7 +175,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     @Override
     public void setNextButtonAction() {
         if (lastItem()) {
-            Flow.get(buttonNext).set(new ResultScreen());
+            Flow.get(buttonNext).set(new ResultScreen(this.presenter.answers()));
             return;
         }
         questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);

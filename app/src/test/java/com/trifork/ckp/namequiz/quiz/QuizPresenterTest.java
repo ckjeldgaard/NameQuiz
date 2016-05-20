@@ -1,6 +1,7 @@
 package com.trifork.ckp.namequiz.quiz;
 
 import com.trifork.ckp.namequiz.data.Repository;
+import com.trifork.ckp.namequiz.model.Answer;
 import com.trifork.ckp.namequiz.model.stubs.StubbedPersonsFactory;
 import com.trifork.ckp.namequiz.model.NameQuiz;
 import com.trifork.ckp.namequiz.model.Quiz;
@@ -53,7 +54,7 @@ public class QuizPresenterTest {
 
     @Test
     public void testAnswerSelected() throws Exception {
-        this.quizPresenter.answerSelected();
+        this.quizPresenter.answerSelected(new Answer("Jeff"));
         verify(quizPresenter.getView()).setNextButtonEnabled(true);
     }
 

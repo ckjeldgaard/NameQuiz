@@ -42,4 +42,57 @@ public class NameQuizTest {
         List<Question> questions = new NameQuiz(smallDepartment).getQuestions();
         assertEquals(smallDepartment.size(), questions.size());
     }
+
+    @Test
+    public void testCheckAnswersWithAllCorrectAnswers() throws Exception {
+        Quiz quiz = new NameQuiz(persons);
+        List<Answer> correctAnswers = new ArrayList<>(10);
+        for (Question question : quiz.getQuestions()) {
+            correctAnswers.add(new Answer(question.person().firstName()));
+        }
+        int numCorrectAnswers = quiz.checkAnswers(correctAnswers);
+
+        assertEquals(quiz.getQuestions().size(), numCorrectAnswers);
+    }
+
+    @Test
+    public void testCheckAnswersWithAllIncorrectButPossibleAnswers() throws Exception {
+        Quiz quiz = new NameQuiz(persons);
+        List<Answer> incorrectAnswers = new ArrayList<>(10);
+        for (Question question : quiz.getQuestions()) {
+            String answer = "";
+            for (AnswerOption option : question.answerOptions()) {
+                if (!option.displayOption().equals(question.person().firstName())) {
+                    answer = option.displayOption();
+                    break;
+                }
+            }
+
+            incorrectAnswers.add(new Answer(answer));
+        }
+        int numCorrectAnswers = quiz.checkAnswers(incorrectAnswers);
+
+        assertEquals(0, numCorrectAnswers);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCheckAnswersWithEmptyListOfAnswersThrowsException() throws Exception {
+        new NameQuiz(persons).checkAnswers(new ArrayList<Answer>(0));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCheckAnswersWithNullListOfAnswersThrowsException() throws Exception {
+        new NameQuiz(persons).checkAnswers(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCheckAnswersWithMismatchingNumberOfAnswersThrowsException() throws Exception {
+        Quiz quiz = new NameQuiz(persons);
+        List<Answer> answers = new ArrayList<>(10);
+        for (Question question : quiz.getQuestions()) {
+            answers.add(new Answer(question.person().firstName()));
+        }
+        answers.remove(answers.size()-1);
+        new NameQuiz(persons).checkAnswers(answers);
+    }
 }

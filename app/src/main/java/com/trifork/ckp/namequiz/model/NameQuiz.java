@@ -1,5 +1,7 @@
 package com.trifork.ckp.namequiz.model;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,5 +51,35 @@ public final class NameQuiz implements Quiz {
     @Override
     public List<Question> getQuestions() {
         return this.questions;
+    }
+
+    @Override
+    public int checkAnswers(@NonNull List<Answer> answers) throws IllegalArgumentException {
+        validateAnswers(answers);
+        int numCorrectAnswers = 0;
+        for (int i = 0; i < this.questions.size(); i++) {
+            if (this.questions.get(i).person().firstName().equals(answers.get(i).get())) {
+                numCorrectAnswers++;
+            }
+        }
+        return numCorrectAnswers;
+    }
+
+    private void validateAnswers(List<Answer> answers) throws IllegalArgumentException {
+        if (answers == null) {
+            throw new IllegalArgumentException("List of answers cannot be null.");
+        }
+        if (answers.size() == 0) {
+            throw new IllegalArgumentException("List of answers cannot be empty.");
+        }
+        if (answers.size() != this.questions.size()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Number of answers (%s) must match number of questions (%s).",
+                            answers.size(),
+                            this.questions.size()
+                    )
+            );
+        }
     }
 }

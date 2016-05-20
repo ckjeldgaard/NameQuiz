@@ -1,6 +1,8 @@
 package com.trifork.ckp.namequiz.result;
 
 
+import android.util.Log;
+
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.trifork.ckp.namequiz.data.Repository;
 import com.trifork.ckp.namequiz.util.PersonImage;
@@ -14,5 +16,7 @@ public final class ResultPresenter extends MvpBasePresenter<ResultContract.Resul
     public ResultPresenter(ResultContract.ResultView view, Repository repository) {
         this.attachView(view);
         this.repository = repository;
+
+        Log.d(TAG, "Quiz = " + this.repository.getQuiz());
     }
 }

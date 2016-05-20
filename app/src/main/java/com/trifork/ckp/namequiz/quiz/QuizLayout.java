@@ -16,7 +16,6 @@ import com.hannesdorfmann.mosby.mvp.viewstate.layout.MvpViewStateRelativeLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
-import com.trifork.ckp.namequiz.model.Answer;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.model.Quiz;
 import com.trifork.ckp.namequiz.quiz.question.QuestionAdapter;

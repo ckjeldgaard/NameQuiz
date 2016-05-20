@@ -1,6 +1,7 @@
 package com.trifork.ckp.namequiz.data;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.trifork.ckp.namequiz.model.Department;
@@ -17,6 +18,7 @@ public class InMemoryRepository implements Repository {
 
     private final ServiceApi serviceApi;
     private List<Department> cachedDepartments = new ArrayList<>();
+    private Quiz quiz;
 
     public InMemoryRepository(@NonNull ServiceApi serviceApi) {
         this.serviceApi = serviceApi;
@@ -73,11 +75,18 @@ public class InMemoryRepository implements Repository {
         }
     }
 
+    @Nullable
+    @Override
+    public Quiz getQuiz() {
+        return this.quiz;
+    }
+
     private void requestPersons(@NonNull final LoadQuizCallback callback, Department department) {
         serviceApi.getPersonsBelongingToDepartment(new ServiceApi.ServiceCallback<List<Person>>() {
             @Override
             public void onLoaded(List<Person> persons) {
-                callback.onQuizLoaded(new NameQuiz(persons));
+                quiz = new NameQuiz(persons);
+                callback.onQuizLoaded(quiz);
             }
 
             @Override

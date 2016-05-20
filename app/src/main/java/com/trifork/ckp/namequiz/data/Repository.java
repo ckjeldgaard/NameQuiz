@@ -1,6 +1,7 @@
 package com.trifork.ckp.namequiz.data;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.model.Quiz;
@@ -25,6 +26,9 @@ public interface Repository {
     void getDepartments(@NonNull LoadDepartmentsCallback callback);
 
     void produceQuiz(@NonNull final LoadQuizCallback callback, @NonNull long departmentId);
+
+    @Nullable
+    Quiz getQuiz();
 
     void refreshData();
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.quiz.QuizScreen;
+import com.trifork.ckp.namequiz.result.ResultScreen;
 import com.trifork.ckp.namequiz.start.StartScreen;
 
 import flow.Dispatcher;
@@ -33,6 +34,8 @@ public final class NameQuizDispatcher implements Dispatcher {
             layout = R.layout.start_screen;
         } else if (destination instanceof QuizScreen) {
             layout = R.layout.quiz_screen;
+        }  else if (destination instanceof ResultScreen) {
+            layout = R.layout.result_screen;
         } else {
             throw new AssertionError("Unknown screen " + destination);
         }

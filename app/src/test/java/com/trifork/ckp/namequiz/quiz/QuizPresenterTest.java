@@ -56,4 +56,11 @@ public class QuizPresenterTest {
         this.quizPresenter.answerSelected();
         verify(quizPresenter.getView()).setNextButtonEnabled(true);
     }
+
+    @Test
+    public void testGotoNext() throws Exception {
+        this.quizPresenter.gotoNext();
+        verify(quizPresenter.getView()).setNextButtonEnabled(false);
+        verify(quizPresenter.getView()).setNextButtonAction();
+    }
 }

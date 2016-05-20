@@ -61,6 +61,17 @@ public class StartPresenterTest {
     }
 
     @Test
+    public void testLoadDepartmentsFails() {
+        Exception ex = new Exception("Sample exception");
+        startPresenter.loadDepartments();
+
+        verify(repository).getDepartments(loadDepartmentsCallbackCaptor.capture());
+        loadDepartmentsCallbackCaptor.getValue().onFailure(ex);
+
+        verify(startPresenter.getView()).showError(ex, false);
+    }
+
+    @Test
     public void testStartQuiz() throws Exception {
         startPresenter.startNewQuiz(DEPARTMENTS.get(0));
         verify(startPresenter.getView()).showStartQuiz(DEPARTMENTS.get(0));

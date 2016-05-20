@@ -1,6 +1,5 @@
 package com.trifork.ckp.namequiz.quiz.question;
 
-import android.content.Context;
 import android.widget.ImageView;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
@@ -19,7 +18,7 @@ public interface QuestionContract {
     }
 
     interface UserActionsListener {
-        void loadQuestion(Context context);
+        void loadQuestion(Question question);
         void selectPerson(int answerOptionIndex);
     }
 }

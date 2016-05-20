@@ -31,8 +31,6 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
             @Override
             public void onQuizLoaded(Quiz nameQuiz) {
                 if (isViewAttached()) {
-                    Log.d("QuizPresenter", "onPersonsLoaded() called with: " + "quiz = [" + quiz + "]");
-
                     quiz = nameQuiz;
                     getView().setData(nameQuiz);
                     getView().showContent();
@@ -42,7 +40,6 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
             @Override
             public void onFailure(Exception ex) {
                 if (isViewAttached()) {
-                    Log.e("QuizPresenter", "onFailure() called with: " + "errorMessage = [" + ex.getMessage() + "]");
                     getView().showError(ex, false);
                 }
             }

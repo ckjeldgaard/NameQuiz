@@ -1,6 +1,5 @@
 package com.trifork.ckp.namequiz.quiz.question;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
@@ -19,8 +18,7 @@ public final class QuestionPresenter extends MvpBasePresenter<QuestionContract.Q
     }
 
     @Override
-    public void loadQuestion(Context context) {
-        Question question = getView().getQuestion();
+    public void loadQuestion(Question question) {
         personImage.loadImage(
                 question.person().imageUrl(),
                 getView().getPersonImageView()
@@ -30,7 +28,7 @@ public final class QuestionPresenter extends MvpBasePresenter<QuestionContract.Q
 
     @Override
     public void selectPerson(int answerOptionIndex) {
-        Log.d(TAG, "Selecting person at index " + answerOptionIndex + " = " + getView().getQuestion().answerOptions().get(answerOptionIndex).displayOption());
+        //Log.d(TAG, "Selecting person at index " + answerOptionIndex + " = " + getView().getQuestion().answerOptions().get(answerOptionIndex).displayOption());
         getView().setSelected(answerOptionIndex);
     }
 

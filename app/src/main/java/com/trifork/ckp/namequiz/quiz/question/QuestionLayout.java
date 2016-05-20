@@ -72,7 +72,7 @@ public class QuestionLayout extends RelativeLayout implements QuestionContract.Q
             }
         });
 
-        this.presenter.loadQuestion(context);
+        this.presenter.loadQuestion(this.question);
 
         return rootView;
     }

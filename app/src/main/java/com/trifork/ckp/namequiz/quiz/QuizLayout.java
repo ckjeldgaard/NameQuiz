@@ -25,6 +25,7 @@ import com.trifork.ckp.namequiz.result.ResultScreen;
 import java.util.ArrayList;
 import java.util.List;
 
+import flow.Direction;
 import flow.Flow;
 
 public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.QuizView, QuizPresenter> implements QuizContract.QuizView {
@@ -174,7 +175,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     @Override
     public void setNextButtonAction() {
         if (lastItem()) {
-            Flow.get(buttonNext).set(new ResultScreen(this.presenter.answers()));
+            Flow.get(buttonNext).replaceTop(new ResultScreen(this.presenter.answers()), Direction.REPLACE);
             return;
         }
         questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);

@@ -7,13 +7,12 @@
     android:paddingTop="@dimen/list_vertical_padding"
     android:paddingBottom="@dimen/list_vertical_padding">
 
-
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="@dimen/answer_result_list_item_image_width"
         android:layout_height="@dimen/answer_result_list_item_image_height"
         android:id="@+id/image_answer_result_person"
         android:src="@mipmap/smiley_neutral"
-        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
         />
 
     <LinearLayout

@@ -1,7 +1,6 @@
 package com.trifork.ckp.namequiz.quiz;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.trifork.ckp.namequiz.data.Repository;
@@ -55,15 +54,15 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
     public List<QuestionResult> questionResults(Quiz quiz) {
         List<QuestionResult> questionResults = new ArrayList<>(this.answers.size());
         for (int i = 0; i < this.answers.size(); i++) {
-            Log.d("QuizPresenter", "answers size = " + this.answers.size());
-            Log.d("QuizPresenter", "questuins size = " + quiz.getQuestions().size());
-            questionResults.add(
-                    new QuestionResult(
-                            this.answers.get(i).get(),
-                            quiz.getQuestions().get(i).person().firstName(),
-                            quiz.getQuestions().get(i).person().imageUrl()
-                    )
-            );
+            if (quiz.getQuestions().size() > i) {
+                questionResults.add(
+                        new QuestionResult(
+                                this.answers.get(i).get(),
+                                quiz.getQuestions().get(i).person().firstName(),
+                                quiz.getQuestions().get(i).person().imageUrl()
+                        )
+                );
+            }
         }
         return questionResults;
     }

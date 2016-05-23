@@ -175,7 +175,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     @Override
     public void setNextButtonAction() {
         if (lastItem()) {
-            Flow.get(buttonNext).replaceTop(new ResultScreen(this.presenter.answers()), Direction.REPLACE);
+            Flow.get(buttonNext).replaceTop(new ResultScreen(this.presenter.questionResults(quiz)), Direction.REPLACE);
             return;
         }
         questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);

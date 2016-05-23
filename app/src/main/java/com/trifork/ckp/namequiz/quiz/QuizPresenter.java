@@ -6,10 +6,8 @@ import android.util.Log;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.trifork.ckp.namequiz.data.Repository;
 import com.trifork.ckp.namequiz.model.Answer;
-import com.trifork.ckp.namequiz.model.Department;
-import com.trifork.ckp.namequiz.model.Question;
+import com.trifork.ckp.namequiz.model.QuestionResult;
 import com.trifork.ckp.namequiz.model.Quiz;
-import com.trifork.ckp.namequiz.quiz.question.QuestionLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +52,20 @@ public final class QuizPresenter extends MvpBasePresenter<QuizContract.QuizView>
     }
 
     @Override
-    public List<Answer> answers() {
-        return this.answers;
+    public List<QuestionResult> questionResults(Quiz quiz) {
+        List<QuestionResult> questionResults = new ArrayList<>(this.answers.size());
+        for (int i = 0; i < this.answers.size(); i++) {
+            Log.d("QuizPresenter", "answers size = " + this.answers.size());
+            Log.d("QuizPresenter", "questuins size = " + quiz.getQuestions().size());
+            questionResults.add(
+                    new QuestionResult(
+                            this.answers.get(i).get(),
+                            quiz.getQuestions().get(i).person().firstName(),
+                            quiz.getQuestions().get(i).person().imageUrl()
+                    )
+            );
+        }
+        return questionResults;
     }
 
     @Override

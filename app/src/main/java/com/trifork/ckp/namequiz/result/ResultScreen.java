@@ -4,19 +4,20 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.trifork.ckp.namequiz.model.Answer;
+import com.trifork.ckp.namequiz.model.QuestionResult;
 
 import java.util.List;
 
 public class ResultScreen implements Parcelable {
 
-    final List<Answer> answers;
+    final List<QuestionResult> questionResults;
 
-    public ResultScreen(List<Answer> answers) {
-        this.answers = answers;
+    public ResultScreen(List<QuestionResult> questionResults) {
+        this.questionResults = questionResults;
     }
 
     protected ResultScreen(Parcel in) {
-        answers = in.createTypedArrayList(Answer.CREATOR);
+        questionResults = in.createTypedArrayList(QuestionResult.CREATOR);
     }
 
     public static final Creator<ResultScreen> CREATOR = new Creator<ResultScreen>() {
@@ -43,6 +44,6 @@ public class ResultScreen implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(answers);
+        dest.writeTypedList(questionResults);
     }
 }

@@ -4,62 +4,51 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.trifork.ckp.namequiz.R;
-import com.trifork.ckp.namequiz.model.Answer;
+import com.trifork.ckp.namequiz.model.QuestionResult;
 
 import java.util.List;
 
-public class AnswerResultListAdapter extends BaseAdapter {
+public class AnswerResultListAdapter extends ArrayAdapter<QuestionResult> {
 
     private final Context context;
-    private final List<Answer> answers;
+    private final int layoutResourceId;
+    private final List<QuestionResult> questionResults;
 
-    public AnswerResultListAdapter(Context context, List<Answer> answers) {
+    public AnswerResultListAdapter(Context context, int layoutResourceId, List<QuestionResult> questionResults) {
+        super(context, layoutResourceId, questionResults);
         this.context = context;
-        this.answers = answers;
-
-    }
-
-    @Override
-    public int getCount() {
-        return answers.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return answers.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return answers.get(position).hashCode();
+        this.layoutResourceId = layoutResourceId;
+        this.questionResults = questionResults;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        View row = convertView;
+        ViewHolder holder = null;
 
-        if (convertView == null) {
+        if (row == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.answer_result_list_item, parent, false);
+            row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new ViewHolder();
-            holder.imagePerson = (ImageView) convertView.findViewById(R.id.image_answer_result_person);
-            holder.textHeadline = (TextView) convertView.findViewById(R.id.text_answer_result_headline);
-            holder.textExplanation = (TextView) convertView.findViewById(R.id.text_answer_result_explanation);
+            holder.imagePerson = (ImageView) row.findViewById(R.id.image_answer_result_person);
+            holder.textHeadline = (TextView) row.findViewById(R.id.text_answer_result_headline);
+            holder.textExplanation = (TextView) row.findViewById(R.id.text_answer_result_explanation);
 
-            convertView.setTag(holder);
+            row.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (ViewHolder)row.getTag();
         }
 
-        holder.textHeadline.setText("Question #1: Correct");
+        QuestionResult questionResult = questionResults.get(position);
+        holder.textHeadline.setText("Question #1: " + questionResult.answerGiven());
 
-        return convertView;
+        return row;
     }
 
     public class ViewHolder

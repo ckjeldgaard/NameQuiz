@@ -31,8 +31,8 @@ public class ResultLayout extends RelativeLayout implements ResultContract.Resul
         ResultScreen screen = Flow.getKey(this);
 
         ListView checklist = (ListView) findViewById(R.id.checklist);
-        checklist.setAdapter(new AnswerResultListAdapter(getContext(), screen.answers));
+        checklist.setAdapter(new AnswerResultListAdapter(getContext(), R.layout.answer_result_list_item, screen.questionResults));
 
-        Log.d("Answers", "" + screen.answers);
+        Log.d("Answers", "" + screen.questionResults);
     }
 }

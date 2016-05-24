@@ -69,15 +69,4 @@ public class QuizPresenterTest {
         verify(quizPresenter.getView()).setNextButtonEnabled(false);
         verify(quizPresenter.getView()).setNextButtonAction();
     }
-
-    @Test
-    public void testQuestionResults() throws Exception {
-        Quiz quiz = new NameQuiz(new StubbedPersonsFactory().producePersons("stubbed_persons.json"));
-        for (Question question : quiz.getQuestions()) {
-            quizPresenter.answerSelected(new Answer(question.person().firstName()));
-        }
-
-        List<QuestionResult> questionResults = this.quizPresenter.questionResults(quiz);
-        assertEquals(quiz.getQuestions().size(), questionResults.size());
-    }
 }

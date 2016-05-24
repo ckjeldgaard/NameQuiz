@@ -50,7 +50,14 @@ public class NameQuizTest {
         for (Question question : quiz.getQuestions()) {
             correctAnswers.add(new Answer(question.person().firstName()));
         }
-        int numCorrectAnswers = quiz.checkAnswers(correctAnswers);
+
+        // Count correct answers:
+        int numCorrectAnswers = 0;
+        for (QuestionResult questionResult : quiz.checkAnswers(correctAnswers)) {
+            if (questionResult.isAnswerCorrect()) {
+                numCorrectAnswers++;
+            }
+        }
 
         assertEquals(quiz.getQuestions().size(), numCorrectAnswers);
     }
@@ -70,7 +77,14 @@ public class NameQuizTest {
 
             incorrectAnswers.add(new Answer(answer));
         }
-        int numCorrectAnswers = quiz.checkAnswers(incorrectAnswers);
+
+        // Count correct answers:
+        int numCorrectAnswers = 0;
+        for (QuestionResult questionResult : quiz.checkAnswers(incorrectAnswers)) {
+            if (questionResult.isAnswerCorrect()) {
+                numCorrectAnswers++;
+            }
+        }
 
         assertEquals(0, numCorrectAnswers);
     }

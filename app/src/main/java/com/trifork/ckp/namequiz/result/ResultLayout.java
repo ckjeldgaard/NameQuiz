@@ -31,7 +31,8 @@ public class ResultLayout extends RelativeLayout implements ResultContract.Resul
 
     public ResultLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.presenter = new ResultPresenter(this);
+        ResultScreen screen = Flow.getKey(this);
+        this.presenter = new ResultPresenter(this, screen.score, screen.questionResults);
     }
 
     @Override

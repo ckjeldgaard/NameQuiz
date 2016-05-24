@@ -1,26 +1,29 @@
 package com.trifork.ckp.namequiz.result;
 
-import android.view.View;
-
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
+import com.trifork.ckp.namequiz.model.QuestionResult;
 
-import flow.Flow;
+import java.util.List;
 
 public final class ResultPresenter extends MvpBasePresenter<ResultContract.ResultView> implements ResultContract.UserActionsListener {
 
     private static final String TAG = ResultPresenter.class.getSimpleName();
-    
-    public ResultPresenter(ResultContract.ResultView view) {
+    private final int score;
+    private final List<QuestionResult> questionResults;
+
+    public ResultPresenter(ResultContract.ResultView view, int score, List<QuestionResult> questionResults) {
         this.attachView(view);
+        this.score = score;
+        this.questionResults = questionResults;
     }
 
     @Override
     public void loadData() {
-        ResultScreen screen = Flow.getKey((View)getView());
+        //ResultScreen screen = Flow.getKey((View)getView());
 
-        getView().setResult(screen.score);
-        getView().setScore(screen.score, screen.questionResults.size());
-        getView().showResultList(screen.questionResults);
+        getView().setResult(score);
+        getView().setScore(score, questionResults.size());
+        getView().showResultList(questionResults);
     }
 
     @Override

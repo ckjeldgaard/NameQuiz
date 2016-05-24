@@ -15,7 +15,7 @@ public interface QuizContract {
 
     interface UserActionsListener {
         void loadPersons(long departmentId);
-        void gotoNext();
-        List<QuestionResult> questionResults(Quiz quiz);
+        void buttonAction();
+        List<Answer> answers();
     }
 }

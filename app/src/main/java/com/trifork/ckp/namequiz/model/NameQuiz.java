@@ -54,11 +54,27 @@ public final class NameQuiz implements Quiz {
     }
 
     @Override
-    public int checkAnswers(@NonNull List<Answer> answers) throws IllegalArgumentException {
+    public List<QuestionResult> checkAnswers(@NonNull List<Answer> answers) throws IllegalArgumentException {
+        validateAnswers(answers);
+        List<QuestionResult> questionResults = new ArrayList<>(answers.size());
+        for (int i = 0; i < this.questions.size(); i++) {
+            questionResults.add(
+                    new QuestionResult(
+                            answers.get(i).get(),
+                            this.getQuestions().get(i).person().firstName(),
+                            this.getQuestions().get(i).person().imageUrl()
+                    )
+            );
+        }
+        return questionResults;
+    }
+
+    @Override
+    public int numberOfCorrectAnswers(@NonNull List<Answer> answers) {
         validateAnswers(answers);
         int numCorrectAnswers = 0;
-        for (int i = 0; i < this.questions.size(); i++) {
-            if (this.questions.get(i).person().firstName().equals(answers.get(i).get())) {
+        for (QuestionResult questionResult : this.checkAnswers(answers)) {
+            if (questionResult.isAnswerCorrect()) {
                 numCorrectAnswers++;
             }
         }

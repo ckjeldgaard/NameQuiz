@@ -2,6 +2,8 @@ package com.trifork.ckp.namequiz.quiz;
 
 import com.trifork.ckp.namequiz.data.Repository;
 import com.trifork.ckp.namequiz.model.Answer;
+import com.trifork.ckp.namequiz.model.Question;
+import com.trifork.ckp.namequiz.model.QuestionResult;
 import com.trifork.ckp.namequiz.model.stubs.StubbedPersonsFactory;
 import com.trifork.ckp.namequiz.model.NameQuiz;
 import com.trifork.ckp.namequiz.model.Quiz;
@@ -13,8 +15,11 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Matchers.eq;
+import static org.junit.Assert.*;
 
 public class QuizPresenterTest {
 
@@ -60,8 +65,19 @@ public class QuizPresenterTest {
 
     @Test
     public void testGotoNext() throws Exception {
-        this.quizPresenter.gotoNext();
+        this.quizPresenter.buttonAction();
         verify(quizPresenter.getView()).setNextButtonEnabled(false);
         verify(quizPresenter.getView()).setNextButtonAction();
+    }
+
+    @Test
+    public void testQuestionResults() throws Exception {
+        Quiz quiz = new NameQuiz(new StubbedPersonsFactory().producePersons("stubbed_persons.json"));
+        for (Question question : quiz.getQuestions()) {
+            quizPresenter.answerSelected(new Answer(question.person().firstName()));
+        }
+
+        List<QuestionResult> questionResults = this.quizPresenter.questionResults(quiz);
+        assertEquals(quiz.getQuestions().size(), questionResults.size());
     }
 }

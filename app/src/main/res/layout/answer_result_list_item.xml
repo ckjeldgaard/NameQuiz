@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Question #1: Correct"
+            android:text="@string/list_item_answer_result_headline"
             android:textStyle="bold"
             android:textColor="@color/green"
             android:id="@+id/text_answer_result_headline" />
@@ -31,7 +31,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="This is Joe. You answered Jeff."
+            android:text="@string/list_item_answer_result_explanation_wrong"
+            android:singleLine="false"
             android:id="@+id/text_answer_result_explanation" />
 
     </LinearLayout>

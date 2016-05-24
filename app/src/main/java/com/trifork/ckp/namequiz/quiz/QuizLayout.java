@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -130,7 +129,7 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
         buttonNext.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.gotoNext();
+                presenter.buttonAction();
             }
         });
     }
@@ -175,7 +174,13 @@ public final class QuizLayout extends MvpViewStateRelativeLayout<QuizContract.Qu
     @Override
     public void setNextButtonAction() {
         if (lastItem()) {
-            Flow.get(buttonNext).replaceTop(new ResultScreen(this.presenter.questionResults(quiz)), Direction.REPLACE);
+            Flow.get(buttonNext).replaceTop(
+                    new ResultScreen(
+                            quiz.numberOfCorrectAnswers(presenter.answers()),
+                            quiz.checkAnswers(presenter.answers())
+                    ),
+                    Direction.REPLACE
+            );
             return;
         }
         questionPager.setCurrentItem(questionPager.getCurrentItem() + 1, true);

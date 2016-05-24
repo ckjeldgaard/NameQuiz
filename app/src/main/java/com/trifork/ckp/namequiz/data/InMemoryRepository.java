@@ -18,7 +18,6 @@ public class InMemoryRepository implements Repository {
 
     private final ServiceApi serviceApi;
     private List<Department> cachedDepartments = new ArrayList<>();
-    private Quiz quiz;
 
     public InMemoryRepository(@NonNull ServiceApi serviceApi) {
         this.serviceApi = serviceApi;
@@ -75,18 +74,11 @@ public class InMemoryRepository implements Repository {
         }
     }
 
-    @Nullable
-    @Override
-    public Quiz getQuiz() {
-        return this.quiz;
-    }
-
     private void requestPersons(@NonNull final LoadQuizCallback callback, Department department) {
         serviceApi.getPersonsBelongingToDepartment(new ServiceApi.ServiceCallback<List<Person>>() {
             @Override
             public void onLoaded(List<Person> persons) {
-                quiz = new NameQuiz(persons);
-                callback.onQuizLoaded(quiz);
+                callback.onQuizLoaded(new NameQuiz(persons));
             }
 
             @Override

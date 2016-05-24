@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface Quiz {
     List<Question> getQuestions();
-    int checkAnswers(@NonNull List<Answer> answers);
+    List<QuestionResult> checkAnswers(@NonNull List<Answer> answers);
+    int numberOfCorrectAnswers(@NonNull List<Answer> answers);
 }

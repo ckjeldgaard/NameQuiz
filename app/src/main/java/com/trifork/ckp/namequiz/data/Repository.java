@@ -27,8 +27,5 @@ public interface Repository {
 
     void produceQuiz(@NonNull final LoadQuizCallback callback, @NonNull long departmentId);
 
-    @Nullable
-    Quiz getQuiz();
-
     void refreshData();
 }

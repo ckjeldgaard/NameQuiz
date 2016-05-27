@@ -1,6 +1,7 @@
 package com.trifork.ckp.namequiz.model;
 
 import com.trifork.ckp.namequiz.model.stubs.StubbedPersonsFactory;
+import com.trifork.ckp.namequiz.util.MaximumQuizQuestions;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class NameQuizTest {
     @Test
     public void testGetQuestions_producesQuizWith10Questions() throws Exception {
         List<Question> questions = new NameQuiz(persons).getQuestions();
-        assertEquals(10, questions.size());
+        assertEquals(new MaximumQuizQuestions().number(), questions.size());
     }
 
     @Test
@@ -46,7 +47,7 @@ public class NameQuizTest {
     @Test
     public void testCheckAnswersWithAllCorrectAnswers() throws Exception {
         Quiz quiz = new NameQuiz(persons);
-        List<Answer> correctAnswers = new ArrayList<>(10);
+        List<Answer> correctAnswers = new ArrayList<>(new MaximumQuizQuestions().number());
         for (Question question : quiz.getQuestions()) {
             correctAnswers.add(new Answer(question.person().firstName()));
         }
@@ -65,7 +66,7 @@ public class NameQuizTest {
     @Test
     public void testCheckAnswersWithAllIncorrectButPossibleAnswers() throws Exception {
         Quiz quiz = new NameQuiz(persons);
-        List<Answer> incorrectAnswers = new ArrayList<>(10);
+        List<Answer> incorrectAnswers = new ArrayList<>(new MaximumQuizQuestions().number());
         for (Question question : quiz.getQuestions()) {
             String answer = "";
             for (AnswerOption option : question.answerOptions()) {
@@ -102,7 +103,7 @@ public class NameQuizTest {
     @Test(expected = IllegalArgumentException.class)
     public void testCheckAnswersWithMismatchingNumberOfAnswersThrowsException() throws Exception {
         Quiz quiz = new NameQuiz(persons);
-        List<Answer> answers = new ArrayList<>(10);
+        List<Answer> answers = new ArrayList<>(new MaximumQuizQuestions().number());
         for (Question question : quiz.getQuestions()) {
             answers.add(new Answer(question.person().firstName()));
         }

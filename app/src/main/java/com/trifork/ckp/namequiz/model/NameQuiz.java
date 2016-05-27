@@ -2,13 +2,13 @@ package com.trifork.ckp.namequiz.model;
 
 import android.support.annotation.NonNull;
 
+import com.trifork.ckp.namequiz.util.MaximumQuizQuestions;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public final class NameQuiz implements Quiz {
-
-    private static final int MAXIMUM_NUMBER_OF_QUESTIONS = 10;
 
     private final List<Person> persons;
     private final List<Question> questions;
@@ -25,13 +25,14 @@ public final class NameQuiz implements Quiz {
     }
 
     private List<Question> generateQuestions() {
-        ArrayList<Question> questions = new ArrayList<>(MAXIMUM_NUMBER_OF_QUESTIONS);
+        int maximumNumberOfQuestions = new MaximumQuizQuestions().number();
+        ArrayList<Question> questions = new ArrayList<>(maximumNumberOfQuestions);
 
         ArrayList<Person> personsList = (ArrayList<Person>) persons;
         Collections.copy(personsList, persons);
         Collections.shuffle(personsList);
 
-        for (int i = 0; i < MAXIMUM_NUMBER_OF_QUESTIONS; i++) {
+        for (int i = 0; i < maximumNumberOfQuestions; i++) {
             if (i < personsList.size()) {
                 questions.add(
                         new Question(

@@ -1,7 +1,6 @@
 package com.trifork.ckp.namequiz.result;
 
 import android.support.test.InstrumentationRegistry;
-import android.support.test.annotation.UiThreadTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
@@ -72,7 +71,7 @@ public class AnswerResultListAdapterTest {
             @Override
             public void run() {
                 View view = adapter.getView(0, null, null);
-                
+
                 TextView textHeadline = (TextView) view.findViewById(R.id.text_answer_result_headline);
                 TextView textExplanation = (TextView) view.findViewById(R.id.text_answer_result_explanation);
 

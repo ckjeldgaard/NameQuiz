@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.trifork.ckp.namequiz.R;
+import com.trifork.ckp.namequiz.model.Person;
 import com.trifork.ckp.namequiz.model.QuestionResult;
+import com.trifork.ckp.namequiz.util.PersonImage;
 
 import java.util.List;
 
@@ -20,12 +22,14 @@ public class AnswerResultListAdapter extends ArrayAdapter<QuestionResult> {
     private final Context context;
     private final int layoutResourceId;
     private final List<QuestionResult> questionResults;
+    private final PersonImage personImage;
 
-    public AnswerResultListAdapter(Context context, int layoutResourceId, List<QuestionResult> questionResults) {
+    public AnswerResultListAdapter(Context context, int layoutResourceId, List<QuestionResult> questionResults, PersonImage personImage) {
         super(context, layoutResourceId, questionResults);
         this.context = context;
         this.layoutResourceId = layoutResourceId;
         this.questionResults = questionResults;
+        this.personImage = personImage;
     }
 
     @Override
@@ -53,13 +57,7 @@ public class AnswerResultListAdapter extends ArrayAdapter<QuestionResult> {
     }
 
     private void defineViewBehavior(int position, ViewHolder holder, QuestionResult questionResult) {
-        int width = Math.round(context.getResources().getDimension(R.dimen.answer_result_list_item_image_width));
-        int height = Math.round(context.getResources().getDimension(R.dimen.answer_result_list_item_image_height));
-        Picasso.with(context)
-                .load(questionResult.imageUrl())
-                .resize(width, height)
-                .centerCrop()
-                .into(holder.imagePerson);
+        personImage.loadThumbnail(questionResult.imageUrl(), holder.imagePerson);
 
         holder.textHeadline.setText(
                 context.getString(

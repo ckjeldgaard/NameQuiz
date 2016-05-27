@@ -1,6 +1,7 @@
 package com.trifork.ckp.namequiz.quiz.question;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
+import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.util.PersonImage;
 

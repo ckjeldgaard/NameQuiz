@@ -18,7 +18,17 @@ public final class PicassoPersonImage implements PersonImage {
     public void loadImage(String source, ImageView target) {
         int width = Math.round(context.getResources().getDimension(R.dimen.person_image_width));
         int height = Math.round(context.getResources().getDimension(R.dimen.person_image_height));
+        picassoLoad(source, target, width, height);
+    }
 
+    @Override
+    public void loadThumbnail(String source, ImageView target) {
+        int width = Math.round(context.getResources().getDimension(R.dimen.answer_result_list_item_image_width));
+        int height = Math.round(context.getResources().getDimension(R.dimen.answer_result_list_item_image_height));
+        picassoLoad(source, target, width, height);
+    }
+
+    private void picassoLoad(String source, ImageView target, int width, int height) {
         Picasso.with(context)
                 .load(source)
                 .placeholder(R.drawable.progress_animation)

@@ -69,4 +69,15 @@ public class QuizPresenterTest {
         verify(quizPresenter.getView()).setNextButtonEnabled(false);
         verify(quizPresenter.getView()).setNextButtonAction();
     }
+
+    @Test
+    public void testAnswers() throws Exception {
+
+        Answer answer = new Answer("Joe");
+
+        this.quizPresenter.answers();
+        this.quizPresenter.answerSelected(answer);
+        this.quizPresenter.buttonAction();
+        assertEquals(answer, this.quizPresenter.answers().get(0));
+    }
 }

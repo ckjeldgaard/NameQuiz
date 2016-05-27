@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.trifork.ckp.namequiz.MainActivity;
+import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.QuestionResult;
 
@@ -40,7 +41,8 @@ public class AnswerResultListAdapterTest {
         adapter = new AnswerResultListAdapter(
                 InstrumentationRegistry.getTargetContext(),
                 R.layout.answer_result_list_item,
-                questionResults
+                questionResults,
+                ((NameQuizApplication)InstrumentationRegistry.getTargetContext().getApplicationContext()).getInjection().providePersonImage(InstrumentationRegistry.getTargetContext())
         );
     }
 

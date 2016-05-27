@@ -3,6 +3,7 @@ package com.trifork.ckp.namequiz.start;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -60,6 +61,13 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.
         errorView = (TextView) findViewById(R.id.errorView);
         loadingView = (ProgressBar) findViewById(R.id.loadingView);
 
+        errorView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadData(false);
+            }
+        });
+
         startButton = (Button) findViewById(R.id.start_button);
 
         departmentsAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, this.departments);
@@ -97,7 +105,13 @@ public final class StartLayout extends MvpViewStateRelativeLayout<StartContract.
     @Override
     public void showError(Throwable throwable, boolean pullToRefresh) {
         loadingView.setVisibility(GONE);
-        errorView.setText(throwable.getMessage());
+        errorView.setText(
+                String.format(
+                        "%s %s",
+                        throwable.getMessage(),
+                        getResources().getString(R.string.error_retry_text)
+                )
+        );
         errorView.setVisibility(VISIBLE);
         contentView.setVisibility(GONE);
     }

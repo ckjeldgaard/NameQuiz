@@ -110,4 +110,14 @@ public class NameQuizTest {
         answers.remove(answers.size()-1);
         new NameQuiz(persons).checkAnswers(answers);
     }
+
+    @Test
+    public void testNumberOfCorrectAnswers() throws Exception {
+        Quiz quiz = new NameQuiz(persons);
+        List<Answer> answers = new ArrayList<>(new MaximumQuizQuestions().number());
+        for (Question question : quiz.getQuestions()) {
+            answers.add(new Answer(question.person().firstName()));
+        }
+        assertEquals(new MaximumQuizQuestions().number(), quiz.numberOfCorrectAnswers(answers));
+    }
 }

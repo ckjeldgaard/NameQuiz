@@ -10,4 +10,9 @@ public class FakePersonImage implements PersonImage {
     public void loadImage(String source, ImageView target) {
         target.setImageResource(R.drawable.person);
     }
+
+    @Override
+    public void loadThumbnail(String source, ImageView target) {
+        target.setImageResource(R.drawable.person);
+    }
 }

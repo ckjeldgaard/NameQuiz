@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.trifork.ckp.namequiz.NameQuizApplication;
 import com.trifork.ckp.namequiz.R;
 import com.trifork.ckp.namequiz.model.QuestionResult;
 import com.trifork.ckp.namequiz.start.StartScreen;
@@ -86,7 +87,14 @@ public class ResultLayout extends RelativeLayout implements ResultContract.Resul
 
     @Override
     public void showResultList(List<QuestionResult> questionResults) {
-        checklist.setAdapter(new AnswerResultListAdapter(getContext(), R.layout.answer_result_list_item, questionResults));
+        checklist.setAdapter(
+                new AnswerResultListAdapter(
+                        getContext(),
+                        R.layout.answer_result_list_item,
+                        questionResults,
+                        ((NameQuizApplication)getContext().getApplicationContext()).getInjection().providePersonImage(getContext())
+                )
+        );
     }
 
     @Override

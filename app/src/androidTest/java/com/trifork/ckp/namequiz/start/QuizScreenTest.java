@@ -42,13 +42,6 @@ public class QuizScreenTest {
                 .check(matches(isDisplayed()));
     }
 
-    @Test
-    public void pressingBackButtonOnResultPage_opensStartUi() throws Exception {
-        performQuiz();
-        Espresso.pressBack();
-        onView(withId(R.id.screenStart)).check(matches(isDisplayed()));
-    }
-
     /**
      * Helper method to perform a quiz from start screen to result screen answering only
      * the first option throughout the quiz.

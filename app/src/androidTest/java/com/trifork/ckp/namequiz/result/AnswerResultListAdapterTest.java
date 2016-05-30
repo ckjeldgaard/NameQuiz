@@ -3,6 +3,7 @@ package com.trifork.ckp.namequiz.result;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -80,6 +81,7 @@ public class AnswerResultListAdapterTest {
                 String wrongHeadline = InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.list_item_answer_result_headline, 1, "Wrong");
                 String wrongExplanation = InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.list_item_answer_result_explanation_wrong, questionResults.get(0).correctResult(), questionResults.get(0).answerGiven());
                 Assert.assertEquals(wrongHeadline, textHeadline.getText());
+                Assert.assertEquals(ContextCompat.getColor(InstrumentationRegistry.getTargetContext(), R.color.red), textHeadline.getCurrentTextColor());
                 Assert.assertEquals(wrongExplanation, textExplanation.getText());
             }
         });
@@ -99,6 +101,7 @@ public class AnswerResultListAdapterTest {
                 String correctHeadline = InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.list_item_answer_result_headline, 2, "Correct");
                 String correctExplanation = InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.list_item_answer_result_explanation_correct, questionResults.get(1).correctResult());
                 Assert.assertEquals(correctHeadline, textHeadline.getText());
+                Assert.assertEquals(ContextCompat.getColor(InstrumentationRegistry.getTargetContext(), R.color.green), textHeadline.getCurrentTextColor());
                 Assert.assertEquals(correctExplanation, textExplanation.getText());
             }
         });

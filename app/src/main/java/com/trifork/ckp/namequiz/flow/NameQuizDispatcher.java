@@ -2,6 +2,7 @@ package com.trifork.ckp.namequiz.flow;
 
 import android.app.Activity;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ public final class NameQuizDispatcher implements Dispatcher {
     }
 
     @Override
-    public void dispatch(Traversal traversal, TraversalCallback callback) {
+    public void dispatch(@NonNull Traversal traversal, @NonNull TraversalCallback callback) {
         Log.d("NameQuizDispatcher", "Dispatching " + traversal);
         Object destination = traversal.destination.top();
 

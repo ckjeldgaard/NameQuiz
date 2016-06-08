@@ -1,25 +1,22 @@
 package com.trifork.ckp.namequiz.data;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.model.NameQuiz;
 import com.trifork.ckp.namequiz.model.Person;
-import com.trifork.ckp.namequiz.model.Quiz;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryRepository implements Repository {
+public class CachedRepository implements Repository {
 
-    private static final String TAG = InMemoryRepository.class.getSimpleName();
+    private static final String TAG = CachedRepository.class.getSimpleName();
 
     private final ServiceApi serviceApi;
     private List<Department> cachedDepartments = new ArrayList<>();
 
-    public InMemoryRepository(@NonNull ServiceApi serviceApi) {
+    public CachedRepository(@NonNull ServiceApi serviceApi) {
         this.serviceApi = serviceApi;
     }
 

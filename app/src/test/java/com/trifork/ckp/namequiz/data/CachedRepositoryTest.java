@@ -21,14 +21,14 @@ import static org.mockito.Mockito.verify;
 /**
  * Unit tests for the implementation of the in-memory repository with cache.
  */
-public class InMemoryRepositoryTest {
+public class CachedRepositoryTest {
 
     private static List<Department> DEPARTMENTS = new ArrayList<Department>() {{
         add(new Department(1, "Copenhagen"));
         add(new Department(2, "Aarhus"));
     }};
 
-    private InMemoryRepository repository;
+    private CachedRepository repository;
 
     @Mock
     private ServiceApi serviceApi;
@@ -47,7 +47,7 @@ public class InMemoryRepositoryTest {
         MockitoAnnotations.initMocks(this);
 
         // Get a reference to the class under test
-        repository = new InMemoryRepository(serviceApi);
+        repository = new CachedRepository(serviceApi);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void invalidateCache_DoesNotCallTheServiceApi() {
-        Repository repo = new InMemoryRepository(serviceApi);
+        Repository repo = new CachedRepository(serviceApi);
 
         // Given a setup Captor to capture callbacks
         twoLoadCallsToRepository(repo, loadDepartmentsCallback);

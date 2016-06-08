@@ -4,7 +4,7 @@ package com.trifork.ckp.namequiz;
 import android.content.Context;
 
 import com.trifork.ckp.namequiz.data.Repository;
-import com.trifork.ckp.namequiz.data.InMemoryRepository;
+import com.trifork.ckp.namequiz.data.CachedRepository;
 import com.trifork.ckp.namequiz.data.firebase.FirebaseQueryFactory;
 import com.trifork.ckp.namequiz.data.firebase.FirebaseServiceApi;
 import com.trifork.ckp.namequiz.util.ConnectivityCheck;
@@ -20,7 +20,7 @@ public final class Injection {
     private final Repository repository;
 
     public Injection(Context context) {
-        this.repository = new InMemoryRepository(
+        this.repository = new CachedRepository(
                 new FirebaseServiceApi(
                         new FirebaseQueryFactory(FIREBASE_BASE_URL, DEPARTMENTS_PATH).queryReference(),
                         new FirebaseQueryFactory(FIREBASE_BASE_URL, PERSONS_PATH).queryReference(),

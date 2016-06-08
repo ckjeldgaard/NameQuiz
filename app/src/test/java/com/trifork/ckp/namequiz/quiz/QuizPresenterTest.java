@@ -2,8 +2,6 @@ package com.trifork.ckp.namequiz.quiz;
 
 import com.trifork.ckp.namequiz.data.Repository;
 import com.trifork.ckp.namequiz.model.Answer;
-import com.trifork.ckp.namequiz.model.Question;
-import com.trifork.ckp.namequiz.model.QuestionResult;
 import com.trifork.ckp.namequiz.model.stubs.StubbedPersonsFactory;
 import com.trifork.ckp.namequiz.model.NameQuiz;
 import com.trifork.ckp.namequiz.model.Quiz;
@@ -14,8 +12,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.List;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Matchers.eq;
@@ -73,7 +69,9 @@ public class QuizPresenterTest {
 
     @Test
     public void testAnswerSelected() throws Exception {
-        this.quizPresenter.answerSelected(new Answer("Jeff"));
+        this.quizPresenter.answerSelected(
+                new Answer("Jeff")
+        );
         verify(quizPresenter.getView()).setNextButtonEnabled(true);
     }
 
@@ -86,12 +84,12 @@ public class QuizPresenterTest {
 
     @Test
     public void testAnswers() throws Exception {
-
         Answer answer = new Answer("Joe");
 
         this.quizPresenter.answers();
         this.quizPresenter.answerSelected(answer);
         this.quizPresenter.buttonAction();
+
         assertEquals(answer, this.quizPresenter.answers().get(0));
     }
 }

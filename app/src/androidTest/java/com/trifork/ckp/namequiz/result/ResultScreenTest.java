@@ -49,7 +49,7 @@ public class ResultScreenTest {
         int numQuestions = new MaximumQuizQuestions().number();
         List<QuestionResult> questionResults = new ArrayList<>(numQuestions);
         for (int i = 0; i < numQuestions; i++) {
-            questionResults.add(new QuestionResult("Joe", "Joe", ""));
+            questionResults.add(new QuestionResult("Joe", "Joe", "http://www.example.org/"));
         }
         return questionResults;
     }

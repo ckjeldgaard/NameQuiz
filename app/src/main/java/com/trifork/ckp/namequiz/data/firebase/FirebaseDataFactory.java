@@ -8,7 +8,7 @@ import com.trifork.ckp.namequiz.model.Department;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirebaseDataFactory {
+public final class FirebaseDataFactory {
 
     private final DataSnapshot dataSnapshot;
 

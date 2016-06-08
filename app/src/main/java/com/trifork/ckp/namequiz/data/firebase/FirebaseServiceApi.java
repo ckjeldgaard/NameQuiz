@@ -17,7 +17,7 @@ import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirebaseServiceApi implements ServiceApi {
+public final class FirebaseServiceApi implements ServiceApi {
 
     private static final String TAG = FirebaseServiceApi.class.getSimpleName();
 

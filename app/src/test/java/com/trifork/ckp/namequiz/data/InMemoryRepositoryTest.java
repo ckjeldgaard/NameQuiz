@@ -51,6 +51,16 @@ public class InMemoryRepositoryTest {
     }
 
     @Test
+    public void getDepartmentsFails() {
+        Exception ex = new Exception("Some exception");
+        repository.getDepartments(loadDepartmentsCallback);
+
+        verify(serviceApi).getAllDepartments(serviceCallbackArgumentCaptor.capture());
+        serviceCallbackArgumentCaptor.getValue().onError(ex);
+        verify(loadDepartmentsCallback).onFailure(ex);
+    }
+
+    @Test
     public void getDepartments_repositoryCachesAfterFirstApiCall() {
         // Given a setup Captor to capture callbacks
         // When two calls are issued to the departments repository

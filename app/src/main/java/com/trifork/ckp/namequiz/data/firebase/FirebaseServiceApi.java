@@ -1,8 +1,5 @@
-package com.trifork.ckp.namequiz.data;
+package com.trifork.ckp.namequiz.data.firebase;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
@@ -10,11 +7,13 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
-import com.trifork.ckp.namequiz.R;
+import com.trifork.ckp.namequiz.data.ServiceApi;
 import com.trifork.ckp.namequiz.model.Department;
 import com.trifork.ckp.namequiz.model.Gender;
 import com.trifork.ckp.namequiz.model.Person;
+import com.trifork.ckp.namequiz.util.ConnectivityCheck;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,43 +21,30 @@ public class FirebaseServiceApi implements ServiceApi {
 
     private static final String TAG = FirebaseServiceApi.class.getSimpleName();
 
-    private final String firebaseUrl;
-    private final Context context;
+    private final Firebase departmentsQuery;
+    private final Firebase personsQuery;
+    private final ConnectivityCheck connectivityCheck;
 
-    public FirebaseServiceApi(String firebaseUrl, Context context) {
-        this.firebaseUrl = firebaseUrl;
-        this.context = context;
+    public FirebaseServiceApi(Firebase departmentsQuery, Firebase personsQuery, ConnectivityCheck connectivityCheck) {
+        this.departmentsQuery = departmentsQuery;
+        this.personsQuery = personsQuery;
+        this.connectivityCheck = connectivityCheck;
     }
 
     @Override
     public void getAllDepartments(final ServiceCallback<List<Department>> callback) {
-        if (!isOnline()) {
-            callback.onError(new Exception(context.getResources().getString(R.string.error_no_internet_connection)));
+        if (!this.connectivityCheck.isOnline()) {
+            callback.onError(new ConnectException("No internet activity detected."));
         } else {
-            Firebase firebaseRef = new Firebase(
-                    String.format(
-                            "%s%s",
-                            this.firebaseUrl,
-                            "/data/departments"
-                    )
-            );
-            Query queryRef = firebaseRef.orderByChild("id");
+            Query queryRef = departmentsQuery.orderByChild("id");
             queryRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    List<Department> departments = new ArrayList<>();
-                    for (DataSnapshot departmentSnapshot : snapshot.getChildren()) {
-                        departments.add(
-                                new Department(
-                                        (long) departmentSnapshot.child("id").getValue(),
-                                        (String) departmentSnapshot.child("departmentName").getValue()
-                                )
-                        );
-                    }
+                    List<Department> departments = new FirebaseDataFactory(snapshot).asDepartmentList();
                     if (departments.size() > 0) {
                         callback.onLoaded(departments);
                     } else {
-                        callback.onError(new RuntimeException(context.getResources().getString(R.string.error_no_departments)));
+                        callback.onError(new RuntimeException("No departments found."));
                     }
                 }
 
@@ -73,17 +59,10 @@ public class FirebaseServiceApi implements ServiceApi {
 
     @Override
     public void getPersonsBelongingToDepartment(final ServiceCallback<List<Person>> callback, final Department department) {
-        if (!isOnline()) {
-            callback.onError(new Exception(context.getResources().getString(R.string.error_no_internet_connection)));
+        if (!connectivityCheck.isOnline()) {
+            callback.onError(new ConnectException("No internet activity detected."));
         } else {
-            Firebase personsRef = new Firebase(
-                    String.format(
-                            "%s%s",
-                            this.firebaseUrl,
-                            "/data/persons"
-                    )
-            );
-            Query personsQueryRef = personsRef.orderByChild("department")
+            Query personsQueryRef = personsQuery.orderByChild("department")
                     .startAt(department.getDepartmentName().toLowerCase())
                     .endAt(department.getDepartmentName().toLowerCase());
 
@@ -112,7 +91,7 @@ public class FirebaseServiceApi implements ServiceApi {
                     if (persons.size() > 0) {
                         callback.onLoaded(persons);
                     } else {
-                        callback.onError(new RuntimeException(context.getResources().getString(R.string.error_no_persons, department.getDepartmentName())));
+                        callback.onError(new RuntimeException("No persons found for department"));
                     }
                 }
 
@@ -123,11 +102,5 @@ public class FirebaseServiceApi implements ServiceApi {
                 }
             });
         }
-    }
-
-    private boolean isOnline() {
-        final ConnectivityManager cm = (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        final NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return (netInfo != null && netInfo.isConnectedOrConnecting());
     }
 }

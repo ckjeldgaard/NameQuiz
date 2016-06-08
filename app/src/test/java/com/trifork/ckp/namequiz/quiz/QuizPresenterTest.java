@@ -58,6 +58,20 @@ public class QuizPresenterTest {
     }
 
     @Test
+    public void testLoadPersonsFails() throws Exception {
+        long departmentId = 1;
+        Exception ex = new Exception("Some exception");
+
+        this.quizPresenter.loadPersons(departmentId);
+
+        verify(repository).produceQuiz(loadQuizCallbackCaptor.capture(), eq(departmentId));
+        loadQuizCallbackCaptor.getValue().onFailure(ex);
+
+        verify(quizPresenter.getView()).showLoading(false);
+        verify(quizPresenter.getView()).showError(ex, false);
+    }
+
+    @Test
     public void testAnswerSelected() throws Exception {
         this.quizPresenter.answerSelected(new Answer("Jeff"));
         verify(quizPresenter.getView()).setNextButtonEnabled(true);

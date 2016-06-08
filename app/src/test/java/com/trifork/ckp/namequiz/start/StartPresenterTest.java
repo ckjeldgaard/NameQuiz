@@ -61,6 +61,20 @@ public class StartPresenterTest {
     }
 
     @Test
+    public void loadDepartmentsFails() {
+        Exception ex = new Exception("Some exception");
+
+        startPresenter.loadDepartments();
+
+        // Callback is captured and invoked with stubbed departments
+        verify(repository).getDepartments(loadDepartmentsCallbackCaptor.capture());
+        loadDepartmentsCallbackCaptor.getValue().onFailure(ex);
+
+        verify(startPresenter.getView()).showLoading(false);
+        verify(startPresenter.getView()).showError(ex, false);
+    }
+
+    @Test
     public void testLoadDepartmentsFails() {
         Exception ex = new Exception("Sample exception");
         startPresenter.loadDepartments();

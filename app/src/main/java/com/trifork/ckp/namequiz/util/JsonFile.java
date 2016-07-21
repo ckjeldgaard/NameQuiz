@@ -1,5 +1,9 @@
 package com.trifork.ckp.namequiz.util;
 
+import android.content.res.AssetManager;
+
+import com.trifork.ckp.namequiz.NameQuizApplication;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

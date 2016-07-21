@@ -15,14 +15,14 @@ public class FakeServiceApi implements ServiceApi {
     @Override
     public void getAllDepartments(ServiceCallback<List<Department>> callback) {
         callback.onLoaded(
-            new StubbedDepartmentsFactory().produceDepartments("stubbed_departments.json")
+            new StubbedDepartmentsFactory().produceDepartments()
         );
     }
 
     @Override
     public void getPersonsBelongingToDepartment(ServiceCallback<List<Person>> callback, Department department) {
         callback.onLoaded(
-                new StubbedPersonsFactory().producePersons("stubbed_persons.json")
+                new StubbedPersonsFactory().producePersons()
         );
     }
 }

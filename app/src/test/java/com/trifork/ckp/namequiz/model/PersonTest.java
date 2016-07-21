@@ -15,8 +15,8 @@ public class PersonTest {
 
     @Before
     public void setUp() throws Exception {
-        department = new StubbedDepartmentsFactory().produceDepartment("stubbed_department.json");
-        person = new StubbedPersonsFactory().producePerson("stubbed_person.json");
+        department = new StubbedDepartmentsFactory().produceDepartment();
+        person = new StubbedPersonsFactory().producePerson();
     }
 
     @Test
@@ -26,7 +26,7 @@ public class PersonTest {
 
     @Test
     public void testFullName() throws Exception {
-        assertEquals("John Doe", person.fullName());
+        assertEquals("John Smith", person.fullName());
     }
 
     @Test

@@ -18,8 +18,8 @@ public class QuestionTest {
 
     @Before
     public void setUp() throws Exception {
-        person = new StubbedPersonsFactory().producePerson("stubbed_person.json");
-        answerOptions = new StubbedAnswerOptionsFactory().produceAnswerOptions("stubbed_answer_options.json");
+        person = new StubbedPersonsFactory().producePerson();
+        answerOptions = new StubbedAnswerOptionsFactory().produceAnswerOptions();
         question = new Question(person, answerOptions);
     }
 

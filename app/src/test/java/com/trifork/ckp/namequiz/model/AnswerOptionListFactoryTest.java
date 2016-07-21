@@ -22,7 +22,7 @@ public class AnswerOptionListFactoryTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        persons = new StubbedPersonsFactory().producePersons("stubbed_persons.json");
+        persons = new StubbedPersonsFactory().producePersons();
     }
 
     @Test

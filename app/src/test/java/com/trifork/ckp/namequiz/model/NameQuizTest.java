@@ -17,7 +17,7 @@ public class NameQuizTest {
 
     @Before
     public void setUp() throws Exception {
-        persons = new StubbedPersonsFactory().producePersons("stubbed_persons.json");
+        persons = new StubbedPersonsFactory().producePersons();
     }
 
     @Test(expected = IllegalArgumentException.class)

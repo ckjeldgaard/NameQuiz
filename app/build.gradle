@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'pl.droidsonroids.pitest'
 
 android {
     compileSdkVersion 23
@@ -80,6 +81,15 @@ dependencies {
 
     // Espresso UI Testing dependencies.
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+}
+
+pitest {
+    targetClasses = ['com.trifork.ckp.namequiz.*']
+    threads = 5
+    outputFormats = ['HTML']
+    timeoutConstInMillis = 20000
+    // Necessary to allow Robolectric to finish. See http://pitest.org/faq/#im-seeing-a-lot-of-timeouts-whats-going-on
+    verbose = true
 }
 
 //noinspection GroovyAssignabilityCheck

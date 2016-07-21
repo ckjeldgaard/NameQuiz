@@ -40,7 +40,7 @@ public class QuizPresenterTest {
     @Test
     public void testLoadPersons() throws Exception {
         long departmentId = 1;
-        Quiz quiz = new NameQuiz(new StubbedPersonsFactory().producePersons("stubbed_persons.json"));
+        Quiz quiz = new NameQuiz(new StubbedPersonsFactory().producePersons());
 
         this.quizPresenter.loadPersons(departmentId);
 

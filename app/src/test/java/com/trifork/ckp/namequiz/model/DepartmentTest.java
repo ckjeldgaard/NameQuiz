@@ -1,11 +1,11 @@
 package com.trifork.ckp.namequiz.model;
 
-import android.test.AndroidTestCase;
-
 import org.junit.Before;
 import org.junit.Test;
 
-public class DepartmentTest extends AndroidTestCase {
+import static junit.framework.Assert.assertEquals;
+
+public class DepartmentTest {
 
     private Department department;
 

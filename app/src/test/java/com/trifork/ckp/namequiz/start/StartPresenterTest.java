@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
  */
 public class StartPresenterTest {
 
-    private static final Department DEPARTMENT = new StubbedDepartmentsFactory().produceDepartment("stubbed_department.json");
+    private static final Department DEPARTMENT = new StubbedDepartmentsFactory().produceDepartment();
     private static List<Department> DEPARTMENTS = new ArrayList<Department>() {{
         add(DEPARTMENT);
         add(DEPARTMENT);

@@ -1,7 +1,5 @@
 package com.trifork.ckp.namequiz.quiz.question;
 
-import android.test.AndroidTestCase;
-
 import com.trifork.ckp.namequiz.model.Question;
 import com.trifork.ckp.namequiz.model.stubs.StubbedAnswerOptionsFactory;
 import com.trifork.ckp.namequiz.model.stubs.StubbedPersonsFactory;
@@ -17,6 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class QuestionPresenterTest {
+
 
     private QuestionPresenter questionPresenter;
 
@@ -35,8 +34,8 @@ public class QuestionPresenterTest {
     @Test
     public void testLoadQuestion() throws Exception {
         Question question = new Question(
-                new StubbedPersonsFactory().producePerson("stubbed_person.json"),
-                new StubbedAnswerOptionsFactory().produceAnswerOptions("stubbed_answer_options.json")
+                new StubbedPersonsFactory().producePerson(),
+                new StubbedAnswerOptionsFactory().produceAnswerOptions()
         );
         questionPresenter.loadQuestion(question);
 
